@@ -4,16 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Collection;
 
 @Entity
-@Table(name = "user")
-public class User implements UserDetails {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@Table(name = "users", schema = "public")
+public class User extends BaseEntity implements UserDetails {
 
     @Column(unique = true)
     private String username;
@@ -60,5 +58,5 @@ public class User implements UserDetails {
         this.password = encodedPassword;
     }
 
-    // getters, setters and overriden methods from UserDetails
+
 }

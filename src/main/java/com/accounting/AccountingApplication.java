@@ -1,6 +1,5 @@
 package com.accounting;
 
-import com.accounting.repositories.NoteRepository;
 import com.accounting.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,12 +15,12 @@ public class AccountingApplication implements CommandLineRunner {
     }
 
     @Autowired
-    NoteRepository userService;
+    UserRepository userService;
 
     @Override
     public void run(String... args) throws Exception {
         try {
-            userService.findAll().forEach(note -> System.out.println(note.getText()));
+            userService.findAll().forEach(note -> System.out.println(note));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
