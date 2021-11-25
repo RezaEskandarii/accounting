@@ -1,5 +1,6 @@
 package com.accounting;
 
+import com.accounting.entitites.Account;
 import com.accounting.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,6 +21,8 @@ public class AccountingApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
+            var a = new Account();
+
             userService.findAll().forEach(note -> System.out.println(note));
         } catch (Exception e) {
             System.out.println(e.getMessage());
