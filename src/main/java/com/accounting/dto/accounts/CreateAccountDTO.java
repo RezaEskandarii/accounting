@@ -1,14 +1,19 @@
 package com.accounting.dto.accounts;
 
-import org.json.JSONObject;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
+@Data
 public class CreateAccountDTO {
 
     private String name;
 
     private String code;
 
-    private JSONObject meta;
+    private AppJSON meta;
 
     private int level;
 
