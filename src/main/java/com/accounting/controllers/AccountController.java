@@ -1,7 +1,9 @@
 package com.accounting.controllers;
 
+import com.accounting.config.APIConfig;
 import com.accounting.dto.accounts.AccountDTO;
 import com.accounting.services.AccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/accounts")
+@RequestMapping(path = APIConfig.accountsCtrlName)
+@Slf4j
 public class AccountController {
 
     @Autowired
@@ -19,18 +22,16 @@ public class AccountController {
     @PostMapping(path = "")
     public ResponseEntity<AccountDTO> create(@RequestBody AccountDTO dto) {
         var ac = accountService.create(dto);
+        log.info(ac.toString());
         return ResponseEntity.of(Optional.of(ac));
     }
 
     @GetMapping(path = "")
-    public List<AccountDTO> findAll() {
+    public ResponseEntity<List<AccountDTO>> findAll() {
         try {
-            var ac = accountService.findAll();
-            return ac;
+            return ResponseEntity.of(Optional.of(accountService.findAll()));
         } catch (Exception e) {
-            System.out.println("-----------------------");
-            System.out.println("-----------------------");
-            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         return null;
     }

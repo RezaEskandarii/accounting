@@ -1,7 +1,6 @@
 package com.accounting.config;
 
 import com.accounting.AccountingApplication;
-import com.fasterxml.jackson.databind.JsonSerializer;
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.cfg.Environment;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;

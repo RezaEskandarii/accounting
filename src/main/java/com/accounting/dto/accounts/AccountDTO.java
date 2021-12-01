@@ -18,4 +18,15 @@ public class AccountDTO {
     private boolean isRoot;
 
     private String description;
+
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", level=" + level +
+                ", isRoot=" + isRoot +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
