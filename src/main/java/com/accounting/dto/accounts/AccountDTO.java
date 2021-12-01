@@ -7,13 +7,11 @@ import lombok.Setter;
 @Setter
 @Getter
 @Data
-public class CreateAccountDTO {
+public class AccountDTO {
 
     private String name;
 
     private String code;
-
-    private AppJSON meta;
 
     private int level;
 

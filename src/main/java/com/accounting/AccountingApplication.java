@@ -1,6 +1,6 @@
 package com.accounting;
 
-import com.accounting.dto.accounts.CreateAccountDTO;
+import com.accounting.dto.accounts.AccountDTO;
 import com.accounting.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,16 +20,6 @@ public class AccountingApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        try {
-            var a = new CreateAccountDTO();
-            a.setCode("12345");
-            a.setDescription("just for test");
-            a.setName("ddd");
-            a.setRoot(false);
-            a.setMeta(new AppJSON());
-            accountService.create(a);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 }
