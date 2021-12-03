@@ -1,6 +1,7 @@
 package com.accounting.mapper;
 
 import com.accounting.dto.accounts.AccountDTO;
+import com.accounting.dto.accounts.GetAccountDTO;
 import com.accounting.entitites.Account;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,15 @@ public class AccountMapper extends BaseMapper {
     }
 
 
+    public GetAccountDTO mapToGetAccountDTO(Object model) {
+
+        if (model instanceof Account) {
+            return modelMapper.map(model, GetAccountDTO.class);
+        }
+
+        throw new RuntimeException("given model type is not of the dto");
+    }
+
     public AccountDTO mapToAccountDTO(Object model) {
 
         if (model instanceof Account) {
@@ -34,7 +44,7 @@ public class AccountMapper extends BaseMapper {
     }
 
 
-    public List<AccountDTO> mapToAccountDTOCollection(List<Account> accounts) {
-        return mapList(accounts, AccountDTO.class);
+    public List<GetAccountDTO> mapToAccountDTOCollection(List<Account> accounts) {
+        return mapList(accounts, GetAccountDTO.class);
     }
 }

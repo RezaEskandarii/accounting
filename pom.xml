@@ -70,7 +70,15 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-<!--		<dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>7.0.1.Final</version>
+		</dependency>
+
+		<!--		<dependency>-->
 
 <!--			<groupId>org.flywaydb</groupId>-->
 <!--			<artifactId>flyway-maven-plugin</artifactId>-->
