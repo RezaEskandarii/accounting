@@ -2,6 +2,7 @@ package com.accounting.services;
 
 import com.accounting.dto.accounts.AccountDTO;
 import com.accounting.dto.accounts.GetAccountDTO;
+import com.accounting.exceptions.ItemNotFoundException;
 import com.accounting.mapper.AccountMapper;
 import com.accounting.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,12 @@ public class AccountService {
     public List<GetAccountDTO> findAll() {
         var accounts = accountRepository.findAll();
         return accountMapper.mapToAccountDTOCollection(accounts);
+    }
+
+    public GetAccountDTO findById(Long id) {
+        var ac = accountRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException(id));
+
+        return accountMapper.mapToGetAccountDTO(ac);
     }
 }

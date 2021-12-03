@@ -6,15 +6,28 @@ import java.time.ZonedDateTime;
 
 public class ApiResponse {
 
-    private final String message;
-    private final HttpStatus statusCode;
-    private final ZonedDateTime zonedDateTime;
-    private final Object data;
+    public String message;
+    public HttpStatus statusCode;
+    public ZonedDateTime zonedDateTime;
+    public Object data;
 
     public ApiResponse(String message, HttpStatus statusCode, ZonedDateTime zonedDateTime, Object data) {
         this.message = message;
         this.statusCode = statusCode;
         this.zonedDateTime = zonedDateTime;
         this.data = data;
+    }
+
+    public ApiResponse() {
+    }
+
+    @Override
+    public String toString() {
+        return "ApiResponse{" +
+                "message='" + message + '\'' +
+                ", statusCode=" + statusCode +
+                ", zonedDateTime=" + zonedDateTime +
+                ", data=" + data +
+                '}';
     }
 }

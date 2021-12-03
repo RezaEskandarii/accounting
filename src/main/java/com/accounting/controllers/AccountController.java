@@ -1,15 +1,16 @@
 package com.accounting.controllers;
 
+import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.dto.accounts.AccountDTO;
 import com.accounting.dto.accounts.GetAccountDTO;
+import com.accounting.exceptions.ApiRequestException;
 import com.accounting.services.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,12 +29,14 @@ public class AccountController {
     }
 
     @GetMapping(path = "")
-    public ResponseEntity<List<GetAccountDTO>> findAll() {
+    public ResponseEntity<ApiResponse> findAll() {
+
         try {
-            return ResponseEntity.of(Optional.of(accountService.findAll()));
+            throw new ApiRequestException("this is a test");
+            //  return ResponseEntity.of(Optional.of(accountService.findAll()));
         } catch (Exception e) {
             log.error(e.getMessage());
+            throw e;
         }
-        return null;
     }
 }
