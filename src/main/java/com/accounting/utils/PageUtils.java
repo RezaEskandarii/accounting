@@ -9,15 +9,15 @@ public class PageUtils {
     public static PageRequest GetRequest(PaginationInput paginationInput) {
 
         var pageable = PageRequest.of(paginationInput.getPageNumber(), paginationInput.getPageSize());
-        var sort = Sort.Direction.ASC;
+        var sort = Sort.Direction.DESC;
 
-        if (paginationInput.getSortType() != null && paginationInput.getSortType().equals("DESC"))
-            sort = Sort.Direction.DESC;
+        if (paginationInput.getSortType() != null && paginationInput.getSortType().equals("ASC"))
+            sort = Sort.Direction.ASC;
 
         if (paginationInput.getSortableField() != null) {
             pageable = pageable.withSort(sort, paginationInput.getSortableField());
         } else {
-            pageable = pageable.withSort(sort);
+            pageable = pageable.withSort(sort, "id");
         }
 
         return pageable;

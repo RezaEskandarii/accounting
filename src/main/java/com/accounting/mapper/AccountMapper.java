@@ -16,35 +16,17 @@ public class AccountMapper extends BaseMapper {
     }
 
     public Account mapToAccount(Object model) {
-
-        if (model instanceof AccountDTO) {
-            return modelMapper.map(model, Account.class);
-        }
-
-        throw new RuntimeException("given model type is not of the dto");
+        return modelMapper.map(model, Account.class);
     }
-
 
     public GetAccountDTO mapToGetAccountDTO(Object model) {
 
-        if (model instanceof Account) {
-            return modelMapper.map(model, GetAccountDTO.class);
-        }
-
-        throw new RuntimeException("given model type is not of the dto");
+        return modelMapper.map(model, GetAccountDTO.class);
     }
 
     public AccountDTO mapToAccountDTO(Object model) {
 
-        if (model instanceof Account) {
-            return modelMapper.map(model, AccountDTO.class);
-        }
-
-        throw new RuntimeException("given model type is not of the dto");
+        return modelMapper.map(model, AccountDTO.class);
     }
 
-
-    public List<GetAccountDTO> mapToGetAccountDTOCollection(List<Account> accounts) {
-        return mapList(accounts, GetAccountDTO.class);
-    }
 }

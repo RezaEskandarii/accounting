@@ -20,7 +20,7 @@ import java.util.Date;
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long Id;
+    public Long id;
 
     @DateTimeFormat
     @CreationTimestamp
