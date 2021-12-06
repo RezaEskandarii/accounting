@@ -44,7 +44,7 @@ public class AccountMapper extends BaseMapper {
     }
 
 
-    public List<GetAccountDTO> mapToAccountDTOCollection(List<Account> accounts) {
+    public List<GetAccountDTO> mapToGetAccountDTOCollection(List<Account> accounts) {
         return mapList(accounts, GetAccountDTO.class);
     }
 }

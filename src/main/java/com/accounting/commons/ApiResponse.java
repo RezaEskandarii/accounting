@@ -18,6 +18,12 @@ public class ApiResponse {
         this.data = data;
     }
 
+    public ApiResponse(Object data, HttpStatus statusCode) {
+        this.statusCode = statusCode;
+        this.data = data;
+    }
+
+
     public ApiResponse() {
     }
 
