@@ -44,4 +44,35 @@ public class AccountController {
         return new ResponseEntity<>(resp, resp.statusCode);
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<ApiResponse> update(@RequestBody AccountDTO accountDTO,
+                                              @PathVariable Long id) {
+        var resp = new ApiResponse();
+
+        try {
+            resp.data = accountService.update(accountDTO, id);
+            resp.statusCode = HttpStatus.OK;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            resp.statusCode = HttpStatus.BAD_REQUEST;
+        }
+
+        return new ResponseEntity<>(resp, resp.statusCode);
+
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
+
+        var resp = new ApiResponse();
+        try {
+            accountService.delete(id);
+            resp.statusCode = HttpStatus.OK;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            resp.statusCode = HttpStatus.BAD_REQUEST;
+        }
+
+        return new ResponseEntity<>(resp, resp.statusCode);
+    }
 }

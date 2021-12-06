@@ -34,4 +34,16 @@ public class Account extends BaseEntity {
     @Column(nullable = true)
     @Lob
     private String description;
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", level=" + level +
+                ", isRoot=" + isRoot +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

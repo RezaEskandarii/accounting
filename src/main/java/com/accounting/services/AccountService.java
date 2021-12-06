@@ -30,8 +30,9 @@ public class AccountService {
     public GetAccountDTO update(AccountDTO accountDTO, Long id) {
         var ac = accountRepository.findById(id).
                 orElseThrow(() -> new ItemNotFoundException(id));
-        ac = accountMapper.mapToAccount(accountDTO);
 
+        ac = accountMapper.mapToAccount(accountDTO);
+        ac.setId(id);
         accountRepository.save(ac);
 
         return accountMapper.mapToGetAccountDTO(ac);
