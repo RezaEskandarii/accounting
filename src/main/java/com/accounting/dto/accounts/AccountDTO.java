@@ -3,9 +3,11 @@ package com.accounting.dto.accounts;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+
 
 @Setter
 @Getter
@@ -13,6 +15,7 @@ import javax.validation.constraints.Min;
 public class AccountDTO {
 
     @Min(2)
+    @NotEmpty(message = "name.not.empty")
     private String name;
 
     @Min(4)

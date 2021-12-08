@@ -4,16 +4,16 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.dto.PaginationInput;
 import com.accounting.dto.accounts.AccountDTO;
-import com.accounting.dto.accounts.GetAccountDTO;
 import com.accounting.services.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = APIConfig.accountsCtrlName)
@@ -25,9 +25,17 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping(path = "")
-    public ResponseEntity<GetAccountDTO> create(@RequestBody AccountDTO dto) {
+    public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountDTO dto,
+                                              BindingResult bindingResult) {
+        var resp = new ApiResponse();
+        if (bindingResult.hasErrors()) {
+            resp.message = bindingResult.getAllErrors().toString();
+            resp.statusCode = HttpStatus.BAD_REQUEST;
+            return new ResponseEntity<>(resp,resp.statusCode);
+        }
+
         var ac = accountService.create(dto);
-        return ResponseEntity.of(Optional.of(ac));
+        return new ResponseEntity<>(resp, resp.statusCode);
     }
 
     @GetMapping("/{id}")
@@ -75,7 +83,7 @@ public class AccountController {
             resp.statusCode = HttpStatus.BAD_REQUEST;
         }
 
-        
+
         return new ResponseEntity<>(resp, resp.statusCode);
     }
 }
