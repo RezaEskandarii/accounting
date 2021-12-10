@@ -3,27 +3,24 @@ package com.accounting.dto.accounts;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-
 
 @Setter
 @Getter
 @Data
 public class AccountDTO {
 
-    @Min(2)
-    @NotEmpty(message = "name.not.empty")
+    @Valid
+    @Min(value = 2, message = "{account.name.required}")
     private String name;
 
-    @Min(4)
-    @Max(4)
+    @Valid
+    @Min(value = 4, message = "{account.code.min.length}")
+    @Max(value = 4, message = "{account.code.max.length}")
     private String code;
-
-    @Min(0)
-    private int level;
 
     private boolean isRoot;
 
@@ -34,7 +31,6 @@ public class AccountDTO {
         return "AccountDTO{" +
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", level=" + level +
                 ", isRoot=" + isRoot +
                 ", description='" + description + '\'' +
                 '}';

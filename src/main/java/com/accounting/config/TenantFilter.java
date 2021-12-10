@@ -25,12 +25,12 @@ public class TenantFilter implements Filter {
         var req = (HttpServletRequest) request;
 
         var tenantIdStr = req.getHeader(tenantId);
-        if ("".equals(tenantIdStr) || tenantIdStr == null) {
-            throw new ServletException("X-TenantId header is null");
-        } else {
-            TenantContext.setCurrentTenant(tenantIdStr);
-            chain.doFilter(request, response);
-        }
+//        if ("".equals(tenantIdStr) || tenantIdStr == null) {
+//            throw new ServletException("X-TenantId header is null");
+//        } else {
+//            TenantContext.setCurrentTenant(tenantIdStr);
+           chain.doFilter(request, response);
+//        }
     }
 
     // other methods

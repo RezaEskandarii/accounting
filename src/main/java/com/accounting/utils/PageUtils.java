@@ -8,6 +8,12 @@ public class PageUtils {
 
     public static PageRequest GetRequest(PaginationInput paginationInput) {
 
+        if (paginationInput.getPageNumber() <= 0)
+            paginationInput.setPageNumber(0);
+
+        if (paginationInput.getPageSize() <= 0)
+            paginationInput.setPageSize(20);
+
         var pageable = PageRequest.of(paginationInput.getPageNumber(), paginationInput.getPageSize());
         var sort = Sort.Direction.DESC;
 

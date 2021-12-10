@@ -22,7 +22,6 @@ public class AccountServiceTest {
     public void TestCanCreateNewAccount() {
         var ac = new AccountDTO();
         ac.setCode("1234");
-        ac.setLevel(0);
         ac.setDescription("just for test");
         ac.setName("receivable account");
         ac.setRoot(false);
