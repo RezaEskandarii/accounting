@@ -34,10 +34,9 @@ public class AccountController {
         var resp = new ApiResponse();
 
         try {
-            var ac = accountService.create(dto);
-            resp.data = ac;
+            resp.data = accountService.create(dto);
             resp.statusCode = HttpStatus.OK;
-            resp.message = messageSource.getMessage("name.not.empty", null, Locale.ENGLISH);
+            resp.message = messageSource.getMessage("http.ok.message", null, Locale.ENGLISH);
         } catch (Exception e) {
             log.error(e.getMessage());
             resp.statusCode = HttpStatus.BAD_GATEWAY;

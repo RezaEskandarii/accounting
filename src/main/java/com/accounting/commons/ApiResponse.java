@@ -6,7 +6,7 @@ import java.time.ZonedDateTime;
 
 public class ApiResponse {
 
-    public String message;
+    public Object message;
     public HttpStatus statusCode;
     public ZonedDateTime zonedDateTime;
     public Object data;

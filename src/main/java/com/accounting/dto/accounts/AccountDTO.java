@@ -3,10 +3,9 @@ package com.accounting.dto.accounts;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 @Setter
 @Getter
@@ -14,25 +13,15 @@ import javax.validation.constraints.Min;
 public class AccountDTO {
 
     @Valid
-    @Min(value = 2, message = "{account.name.required}")
+    @Length(min = 2, message = "{account.name.required}")
     private String name;
 
     @Valid
-    @Min(value = 4, message = "{account.code.min.length}")
-    @Max(value = 4, message = "{account.code.max.length}")
+    @Length(min = 4, max = 4, message = "{account.code.min.length}")
     private String code;
 
     private boolean isRoot;
 
     private String description;
 
-    @Override
-    public String toString() {
-        return "AccountDTO{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", isRoot=" + isRoot +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }
