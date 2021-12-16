@@ -1,6 +1,5 @@
 package com.accounting.config;
 
-import com.accounting.commons.TenantContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -24,12 +23,12 @@ public class TenantFilter implements Filter {
 
         var req = (HttpServletRequest) request;
 
-        var tenantIdStr = req.getHeader(tenantId);
+        //  var tenantIdStr = req.getHeader(tenantId);
 //        if ("".equals(tenantIdStr) || tenantIdStr == null) {
 //            throw new ServletException("X-TenantId header is null");
 //        } else {
 //            TenantContext.setCurrentTenant(tenantIdStr);
-           chain.doFilter(request, response);
+        chain.doFilter(request, response);
 //        }
     }
 

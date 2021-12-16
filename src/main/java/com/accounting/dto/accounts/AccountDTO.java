@@ -1,9 +1,11 @@
 package com.accounting.dto.accounts;
 
+import com.accounting.dto.accountGroups.AccountGroupDto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
 
@@ -24,4 +26,5 @@ public class AccountDTO {
 
     private String description;
 
+    AccountGroupDto accountGroup;
 }

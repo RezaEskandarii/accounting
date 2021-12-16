@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Setter
@@ -34,6 +31,9 @@ public class Account extends BaseEntity {
     @Column(nullable = true)
     @Lob
     private String description;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private AccountGroup accountGroup;
 
 
     @Override
