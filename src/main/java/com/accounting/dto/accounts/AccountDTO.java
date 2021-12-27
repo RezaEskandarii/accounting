@@ -1,13 +1,12 @@
 package com.accounting.dto.accounts;
 
-import com.accounting.dto.accountGroups.AccountGroupDto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
@@ -26,5 +25,7 @@ public class AccountDTO {
 
     private String description;
 
-    AccountGroupDto accountGroup;
+    @Valid
+    @NotNull(message = "{account.group_id.required}")
+    private Long accountGroupId;
 }

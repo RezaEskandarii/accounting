@@ -1,11 +1,13 @@
 package com.accounting.dto.accounts;
 
+import com.accounting.dto.BaseDto;
+import com.accounting.dto.accountGroups.GetAccountGroupDto;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class GetAccountDTO {
+public class GetAccountDTO extends BaseDto {
 
     private Long id;
 
@@ -19,4 +21,5 @@ public class GetAccountDTO {
 
     private String description;
 
+    private GetAccountGroupDto accountGroup;
 }
