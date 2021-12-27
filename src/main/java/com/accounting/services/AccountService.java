@@ -62,4 +62,20 @@ public class AccountService {
     public void delete(Long id) {
         accountRepository.deleteById(id);
     }
+
+    public GetAccountDTO findByName(String name) {
+        var ac = this.accountRepository.findAccountByName(name);
+        if (ac == null)
+            return null;
+
+        return accountMapper.mapToGetAccountDTO(ac);
+    }
+
+    public GetAccountDTO findByCode(String code) {
+        var ac = this.accountRepository.findAccountByCode(code);
+        if (ac == null)
+            return null;
+
+        return accountMapper.mapToGetAccountDTO(ac);
+    }
 }
