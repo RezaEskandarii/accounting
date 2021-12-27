@@ -2,7 +2,9 @@ package com.accounting.exceptions;
 
 import com.accounting.commons.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,12 +20,16 @@ import java.sql.SQLException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
 @EnableAutoConfiguration
 @Slf4j
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @Autowired
+    private MessageSource messageSource;
 
     @ExceptionHandler(value = {ApiRequestException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -88,4 +94,21 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
     }
+
+
+    @ExceptionHandler(value = DuplicatedItemException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Object> handleDuplicatedItemException(DuplicatedItemException e) {
+
+        var apiResponse = new ApiResponse();
+        apiResponse.statusCode = HttpStatus.CONFLICT;
+
+        if (e != null && e.getErrors() != null) {
+            apiResponse.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
+        }
+
+        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+    }
+
+
 }

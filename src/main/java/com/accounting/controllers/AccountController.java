@@ -29,12 +29,12 @@ public class AccountController {
     MessageSource messageSource;
 
     @PostMapping(path = "")
-    public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountDTO dto) {
+    public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountDTO dto, Locale locale) {
         var resp = new ApiResponse();
 
         resp.data = accountService.create(dto);
         resp.statusCode = HttpStatus.OK;
-        resp.message = messageSource.getMessage("http.ok.message", null, Locale.ENGLISH);
+        resp.message = messageSource.getMessage("http.ok.message", null, locale);
 
         return new ResponseEntity<>(resp, resp.statusCode);
     }

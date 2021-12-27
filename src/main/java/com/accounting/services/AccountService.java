@@ -4,6 +4,8 @@ import com.accounting.dto.PaginationInput;
 import com.accounting.dto.accounts.AccountDTO;
 import com.accounting.dto.accounts.GetAccountDTO;
 import com.accounting.entitites.Account;
+import com.accounting.errors.Errors;
+import com.accounting.exceptions.DuplicatedItemException;
 import com.accounting.exceptions.ItemNotFoundException;
 import com.accounting.mapper.AccountMapper;
 import com.accounting.repositories.AccountRepository;
@@ -11,6 +13,9 @@ import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -24,7 +29,12 @@ public class AccountService {
     @Autowired
     private AccountGroupService accountGroupService;
 
+
     public GetAccountDTO create(AccountDTO accountDTO) {
+
+        // check to duplicated fields
+        checkDuplicatedFields(accountDTO);
+
         var account = accountMapper.mapToAccount(accountDTO);
         var accountGroup = accountGroupService.findAccountGroupById(accountDTO.getAccountGroupId());
         account.setAccountGroup(accountGroup);
@@ -77,5 +87,26 @@ public class AccountService {
             return null;
 
         return accountMapper.mapToGetAccountDTO(ac);
+    }
+
+    public GetAccountDTO findByMainCode(String code) {
+        var ac = this.accountRepository.findAccountByCodeEndingWith(code);
+        if (ac == null)
+            return null;
+
+        return accountMapper.mapToGetAccountDTO(ac);
+    }
+
+    private void checkDuplicatedFields(AccountDTO accountDTO) {
+        List<String> errors = new ArrayList<>();
+
+        if (this.findByName(accountDTO.getName()) != null)
+            errors.add(Errors.AccountNameDuplicateError);
+
+        if (this.findByMainCode(accountDTO.getCode()) != null)
+            errors.add(Errors.AccountCodeDuplicateError);
+
+        if (errors.size() > 0)
+            throw new DuplicatedItemException(errors);
     }
 }
