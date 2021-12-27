@@ -21,8 +21,14 @@ public class AccountService {
     @Autowired
     private AccountMapper accountMapper;
 
+    @Autowired
+    private AccountGroupService accountGroupService;
+
     public GetAccountDTO create(AccountDTO accountDTO) {
         var account = accountMapper.mapToAccount(accountDTO);
+        var accountGroup = accountGroupService.findAccountGroupById(accountDTO.getAccountGroupId());
+        account.setAccountGroup(accountGroup);
+        account.setCode(String.format("%s%s", accountGroup.getCode(), account.getCode()));
         accountRepository.save(account);
         return accountMapper.mapToGetAccountDTO(account);
     }

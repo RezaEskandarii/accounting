@@ -53,6 +53,11 @@ public class AccountGroupService {
         return accountGroupMapper.mapToGetAccountGroup(ac);
     }
 
+    public AccountGroup findAccountGroupById(Long id) {
+        return accountGroupRepository.findById(id)
+                .orElseThrow(() -> new ItemNotFoundException(id));
+    }
+
     public void delete(Long id) {
         accountGroupRepository.deleteById(id);
     }

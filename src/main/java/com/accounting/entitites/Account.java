@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "accounts")
 public class Account extends BaseEntity {
 
-    @Column(length = 256, nullable = false)
+    @Column(length = 256, nullable = false, unique = true)
     private String name;
 
     @Column(length = 8, nullable = false, unique = true)
