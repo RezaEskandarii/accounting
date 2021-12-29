@@ -33,7 +33,7 @@ public class AccountService {
     public GetAccountDTO create(AccountDTO accountDTO) {
 
         // check to duplicated fields
-        checkDuplicatedFields(accountDTO);
+        checkDuplicatedFieldsInCreate(accountDTO);
 
         var account = accountMapper.mapToAccount(accountDTO);
         var accountGroup = accountGroupService.findAccountGroupById(accountDTO.getAccountGroupId());
@@ -44,6 +44,9 @@ public class AccountService {
     }
 
     public GetAccountDTO update(AccountDTO accountDTO, Long id) {
+
+        checkDuplicatedFieldsInUpdate(accountDTO, id);
+
         var ac = accountRepository.findById(id).
                 orElseThrow(() -> new ItemNotFoundException(id));
 
@@ -97,13 +100,40 @@ public class AccountService {
         return accountMapper.mapToGetAccountDTO(ac);
     }
 
-    private void checkDuplicatedFields(AccountDTO accountDTO) {
+    /**
+     * check duplicated fields in create operation.
+     *
+     * @param accountDTO
+     */
+    private void checkDuplicatedFieldsInCreate(AccountDTO accountDTO) {
         List<String> errors = new ArrayList<>();
 
         if (this.findByName(accountDTO.getName()) != null)
             errors.add(Errors.AccountNameDuplicateError);
 
         if (this.findByMainCode(accountDTO.getCode()) != null)
+            errors.add(Errors.AccountCodeDuplicateError);
+
+        if (errors.size() > 0)
+            throw new DuplicatedItemException(errors);
+    }
+
+
+    /**
+     * check duplicated fields in update operation.
+     *
+     * @param accountDTO
+     * @param id
+     */
+    private void checkDuplicatedFieldsInUpdate(AccountDTO accountDTO, Long id) {
+        List<String> errors = new ArrayList<>();
+
+        var ac = this.findByName(accountDTO.getName());
+        if (ac != null && !ac.getId().equals(id))
+            errors.add(Errors.AccountNameDuplicateError);
+
+        ac = this.findByMainCode(accountDTO.getCode());
+        if (ac != null && !ac.getId().equals(id))
             errors.add(Errors.AccountCodeDuplicateError);
 
         if (errors.size() > 0)
