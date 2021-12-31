@@ -1,5 +1,6 @@
 package com.accounting.mapper;
 
+import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class BaseMapper {
 
     public BaseMapper() {
         this.modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
     }
 
     <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {

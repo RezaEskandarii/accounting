@@ -1,18 +1,18 @@
 package com.accounting.entitites;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
+@Data
 @Table(name = "accounts")
 public class Account extends BaseEntity {
 
@@ -32,18 +32,8 @@ public class Account extends BaseEntity {
     @Lob
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "account_group_id")
     private AccountGroup accountGroup;
 
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", level=" + level +
-                ", isRoot=" + isRoot +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

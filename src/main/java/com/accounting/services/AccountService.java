@@ -10,6 +10,8 @@ import com.accounting.exceptions.ItemNotFoundException;
 import com.accounting.mapper.AccountMapper;
 import com.accounting.repositories.AccountRepository;
 import com.accounting.utils.PageUtils;
+import org.modelmapper.Conditions;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -39,22 +41,24 @@ public class AccountService {
         var accountGroup = accountGroupService.findAccountGroupById(accountDTO.getAccountGroupId());
         account.setAccountGroup(accountGroup);
         account.setCode(String.format("%s%s", accountGroup.getCode(), account.getCode()));
-        accountRepository.save(account);
-        return accountMapper.mapToGetAccountDTO(account);
+        var result = accountRepository.save(account);
+        return accountMapper.mapToGetAccountDTO(result);
     }
 
     public GetAccountDTO update(AccountDTO accountDTO, Long id) {
 
         checkDuplicatedFieldsInUpdate(accountDTO, id);
-
+        var mapper = new ModelMapper();
+        mapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
         var ac = accountRepository.findById(id).
                 orElseThrow(() -> new ItemNotFoundException(id));
 
-        ac = accountMapper.mapToAccount(accountDTO);
+        mapper.map(accountDTO, ac);
         ac.setId(id);
-        accountRepository.save(ac);
+        ac.setAccountGroup(null);
+        var result = accountRepository.save(ac);
 
-        return accountMapper.mapToGetAccountDTO(ac);
+        return accountMapper.mapToGetAccountDTO(result);
     }
 
     public Page<Account> findAll(PaginationInput input) {

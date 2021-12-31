@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Setter
 @Getter
-@Data
 public abstract class BaseDto {
 
     public Long id;

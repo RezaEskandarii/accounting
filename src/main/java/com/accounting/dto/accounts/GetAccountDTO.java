@@ -2,14 +2,13 @@ package com.accounting.dto.accounts;
 
 import com.accounting.dto.BaseDto;
 import com.accounting.dto.accountGroups.GetAccountGroupDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class GetAccountDTO extends BaseDto {
-
-    private Long id;
 
     private String name;
 
@@ -22,4 +21,5 @@ public class GetAccountDTO extends BaseDto {
     private String description;
 
     private GetAccountGroupDto accountGroup;
+
 }
