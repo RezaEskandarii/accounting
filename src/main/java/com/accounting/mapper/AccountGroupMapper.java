@@ -1,5 +1,6 @@
 package com.accounting.mapper;
 
+import com.accounting.dto.accountGroups.AccountGroupDto;
 import com.accounting.dto.accountGroups.GetAccountGroupDto;
 import com.accounting.entitites.AccountGroup;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,10 @@ public class AccountGroupMapper extends BaseMapper {
 
     public AccountGroup mapTotAccountGroup(Object model) {
         return modelMapper.map(model, AccountGroup.class);
+    }
+
+    public AccountGroupDto mapToAccountGroupDto(Object model) {
+        return modelMapper.map(model, AccountGroupDto.class);
     }
 }
 
