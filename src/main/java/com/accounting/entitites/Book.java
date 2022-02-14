@@ -5,12 +5,16 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter
 @Data
+@Entity
+@Table(name = "books")
 public class Book extends BaseEntity {
 
     private String name;

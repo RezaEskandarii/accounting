@@ -39,7 +39,7 @@ public class HibernateConfig {
         jpaPropertiesMap.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantIdentifierResolver);
         jpaPropertiesMap.put(Environment.SHOW_SQL, true);
         jpaPropertiesMap.put(Environment.FORMAT_SQL, true);
-        jpaPropertiesMap.put(Environment.HBM2DDL_AUTO, "update");
+        jpaPropertiesMap.put(Environment.HBM2DDL_AUTO, "create");
         jpaPropertiesMap.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         em.setJpaPropertyMap(jpaPropertiesMap);
 
