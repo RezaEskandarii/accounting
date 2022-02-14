@@ -8,13 +8,12 @@ import lombok.Setter;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
-@Getter
 @Setter
+@Getter
 @Data
-public class Journal extends BaseEntity {
+public class Book extends BaseEntity {
 
-    private Date date;
-    private String memo;
-    private int sequence;
-
+    private String name;
+    private Date startDate;
+    private Date endDate;
 }
