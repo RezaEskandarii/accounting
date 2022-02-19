@@ -25,15 +25,15 @@ public class Transaction extends BaseEntity {
 
     private String memo;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    private Account account;
+//    @ManyToOne
+//    @JoinColumn(name = "account_id", nullable = false)
+//    private Account account;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "book_id", nullable = false)
+//    private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
-    private Book book;
-
-    @ManyToOne
-    @JoinColumn(name = "journal_id", nullable = false)
+    @JoinColumn(name = "journal_id")
     private Journal journal;
 }
