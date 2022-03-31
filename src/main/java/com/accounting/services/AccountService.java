@@ -54,7 +54,7 @@ public class AccountService {
                 orElseThrow(() -> new ItemNotFoundException(id));
 
         mapper.map(accountDTO, ac);
-        ac.setId(id);
+      //  ac.setId(id);
         ac.setAccountGroup(null);
         var result = accountRepository.save(ac);
 

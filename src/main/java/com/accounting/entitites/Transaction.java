@@ -5,10 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
@@ -33,7 +30,6 @@ public class Transaction extends BaseEntity {
 //    @JoinColumn(name = "book_id", nullable = false)
 //    private Book book;
 
-    @ManyToOne
-    @JoinColumn(name = "journal_id")
+    @ManyToOne(targetEntity = Journal.class,cascade = CascadeType.ALL)
     private Journal journal;
 }

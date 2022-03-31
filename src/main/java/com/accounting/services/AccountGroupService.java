@@ -38,7 +38,7 @@ public class AccountGroupService {
                 orElseThrow(() -> new ItemNotFoundException(id));
 
         var ac = accountGroupMapper.mapToAccountGroup(acGroup);
-        ac.setId(id);
+       // ac.setId(id);
         accountGroupRepository.save(ac);
 
         return accountGroupMapper.mapToGetAccountGroup(ac);

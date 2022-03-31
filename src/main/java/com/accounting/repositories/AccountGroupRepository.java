@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountGroupRepository extends JpaRepository<AccountGroup, Long> {
     public AccountGroup findByName(String name);
+
     public AccountGroup findByCode(String code);
-
-
 }
