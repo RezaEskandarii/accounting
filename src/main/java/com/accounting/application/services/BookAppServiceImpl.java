@@ -1,17 +1,17 @@
 package com.accounting.application.services;
 
+import com.accounting.contract.dto.PaginationInput;
 import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
 import com.accounting.contract.interfaces.BookAppService;
 import com.accounting.domain.interfaces.BookService;
-import com.accounting.domain.services.BookServiceImpl;
 import com.accounting.shared.Constants;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.InvalidDataException;
 import com.accounting.shared.mapper.BookMapper;
 import com.accounting.utils.DateUtils;
-import com.sun.xml.bind.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -53,6 +53,13 @@ public class BookAppServiceImpl implements BookAppService {
     @Override
     public void delete(Long id) {
         bookService.delete(id);
+    }
+
+    @Override
+    public Page<BookDto> findAll(PaginationInput input) {
+
+        var books = bookService.findAll(input);
+        return books.map(b -> bookMapper.mapToBookDto(b));
     }
 
     private void validateDateTime(Date start, Date end) {
