@@ -15,11 +15,15 @@ public class AccountingApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(AccountingApplication.class, args);
+        try {
+            SpringApplication.run(AccountingApplication.class, args);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void run(String... args) throws Exception {
-        log.error("application started...");
+        log.info("application started...");
     }
 }

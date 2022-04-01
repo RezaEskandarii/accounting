@@ -23,6 +23,25 @@ public class ApiResponse {
         this.data = data;
     }
 
+    public ApiResponse setMessage(Object message) {
+        this.message = message;
+        return this;
+    }
+
+    public ApiResponse setStatusCode(HttpStatus status) {
+        this.statusCode = status;
+        return this;
+    }
+
+    public ApiResponse setZonedDateTime(ZonedDateTime dateTime) {
+        this.zonedDateTime = dateTime;
+        return this;
+    }
+
+    public ApiResponse setData(Object data) {
+        this.data = data;
+        return this;
+    }
 
     public ApiResponse() {
     }
