@@ -113,10 +113,10 @@ public class AccountService {
         List<String> errors = new ArrayList<>();
 
         if (this.findByName(accountDTO.getName()) != null)
-            errors.add(Errors.AccountNameDuplicateError);
+            errors.add(Errors.ACCOUNT_NAME_REPEATED_ERROR);
 
         if (this.findByMainCode(accountDTO.getCode()) != null)
-            errors.add(Errors.AccountCodeDuplicateError);
+            errors.add(Errors.ACCOUNT_CODE_REPEATED_ERROR);
 
         if (errors.size() > 0)
             throw new DuplicatedItemException(errors);
@@ -134,11 +134,11 @@ public class AccountService {
 
         var ac = this.findByName(accountDTO.getName());
         if (ac != null && !ac.getId().equals(id))
-            errors.add(Errors.AccountNameDuplicateError);
+            errors.add(Errors.ACCOUNT_NAME_REPEATED_ERROR);
 
         ac = this.findByMainCode(accountDTO.getCode());
         if (ac != null && !ac.getId().equals(id))
-            errors.add(Errors.AccountCodeDuplicateError);
+            errors.add(Errors.ACCOUNT_CODE_REPEATED_ERROR);
 
         if (errors.size() > 0)
             throw new DuplicatedItemException(errors);

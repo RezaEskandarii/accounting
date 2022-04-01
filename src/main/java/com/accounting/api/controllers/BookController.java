@@ -4,7 +4,6 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
 import com.accounting.contract.interfaces.BookAppService;
-import com.accounting.domain.entitites.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

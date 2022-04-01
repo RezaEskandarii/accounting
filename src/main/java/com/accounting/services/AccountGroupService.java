@@ -80,10 +80,10 @@ public class AccountGroupService {
         List<String> errors = new ArrayList<>();
 
         if (this.findByName(dto.getName()) != null)
-            errors.add(Errors.AccountNameDuplicateError);
+            errors.add(Errors.ACCOUNT_NAME_REPEATED_ERROR);
 
         if (this.findByCode(dto.getCode()) != null)
-            errors.add(Errors.AccountCodeDuplicateError);
+            errors.add(Errors.ACCOUNT_CODE_REPEATED_ERROR);
 
         if (errors.size() > 0)
             throw new DuplicatedItemException(errors);
