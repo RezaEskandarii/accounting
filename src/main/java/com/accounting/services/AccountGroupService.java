@@ -1,14 +1,14 @@
 package com.accounting.services;
 
-import com.accounting.dto.PaginationInput;
-import com.accounting.dto.accountGroups.AccountGroupDto;
-import com.accounting.dto.accountGroups.GetAccountGroupDto;
-import com.accounting.entitites.AccountGroup;
-import com.accounting.errors.Errors;
-import com.accounting.exceptions.DuplicatedItemException;
-import com.accounting.exceptions.ItemNotFoundException;
-import com.accounting.mapper.AccountGroupMapper;
-import com.accounting.repositories.AccountGroupRepository;
+import com.accounting.contract.dto.PaginationInput;
+import com.accounting.contract.dto.accountGroups.AccountGroupDto;
+import com.accounting.contract.dto.accountGroups.GetAccountGroupDto;
+import com.accounting.domain.entitites.AccountGroup;
+import com.accounting.shared.errors.Errors;
+import com.accounting.shared.exceptions.DuplicatedItemException;
+import com.accounting.shared.exceptions.ItemNotFoundException;
+import com.accounting.shared.mapper.AccountGroupMapper;
+import com.accounting.repositories.interfaces.AccountGroupRepository;
 import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

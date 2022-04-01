@@ -1,8 +1,8 @@
 package com.accounting.services;
 
 
-import com.accounting.entitites.User;
-import com.accounting.repositories.UserRepository;
+import com.accounting.domain.entitites.User;
+import com.accounting.repositories.interfaces.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

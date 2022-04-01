@@ -1,6 +1,6 @@
 package com.accounting.config;
 
-//import com.accounting.repositories.UserRepository;
+//import com.accounting.repositories.interfaces.UserRepository;
 //import org.flywaydb.core.Flyway;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.context.annotation.Bean;

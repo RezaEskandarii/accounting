@@ -1,14 +1,14 @@
 package com.accounting.services;
 
-import com.accounting.dto.PaginationInput;
-import com.accounting.dto.accounts.AccountDTO;
-import com.accounting.dto.accounts.GetAccountDTO;
-import com.accounting.entitites.Account;
-import com.accounting.errors.Errors;
-import com.accounting.exceptions.DuplicatedItemException;
-import com.accounting.exceptions.ItemNotFoundException;
-import com.accounting.mapper.AccountMapper;
-import com.accounting.repositories.AccountRepository;
+import com.accounting.contract.dto.PaginationInput;
+import com.accounting.contract.dto.accounts.AccountDTO;
+import com.accounting.contract.dto.accounts.GetAccountDTO;
+import com.accounting.domain.entitites.Account;
+import com.accounting.shared.errors.Errors;
+import com.accounting.shared.exceptions.DuplicatedItemException;
+import com.accounting.shared.exceptions.ItemNotFoundException;
+import com.accounting.shared.mapper.AccountMapper;
+import com.accounting.repositories.interfaces.AccountRepository;
 import com.accounting.utils.PageUtils;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;

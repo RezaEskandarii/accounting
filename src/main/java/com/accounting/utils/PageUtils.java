@@ -1,6 +1,6 @@
 package com.accounting.utils;
 
-import com.accounting.dto.PaginationInput;
+import com.accounting.contract.dto.PaginationInput;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 

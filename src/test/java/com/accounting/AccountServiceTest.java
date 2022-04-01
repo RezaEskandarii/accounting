@@ -1,6 +1,6 @@
 package com.accounting;
 
-import com.accounting.dto.accounts.AccountDTO;
+import com.accounting.contract.dto.accounts.AccountDTO;
 import com.accounting.services.AccountService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
