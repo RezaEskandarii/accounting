@@ -22,13 +22,13 @@ public class Transaction extends BaseEntity {
 
     private String memo;
 
-//    @ManyToOne
-//    @JoinColumn(name = "account_id", nullable = false)
-//    private Account account;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "book_id", nullable = false)
-//    private Book book;
+    @ManyToOne
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
 
     @ManyToOne(targetEntity = Journal.class, cascade = CascadeType.ALL)
     private Journal journal;

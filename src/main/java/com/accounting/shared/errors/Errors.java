@@ -10,4 +10,5 @@ public class Errors {
     public static final String ACCOUNT_GROUP_CODE_REPEATED_ERROR = "account_group.code.repeatedError";
 
     public static final String BOOK_DATE_DURATION_ERROR = "book.date.durationError";
+    public static final String BOOK_HAS_TRANSACTION_ERROR = "book.hasTransactionError";
 }

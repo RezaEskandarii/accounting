@@ -4,6 +4,9 @@ import com.accounting.contract.dto.PaginationInput;
 import com.accounting.domain.entitites.Book;
 import com.accounting.domain.interfaces.BookService;
 import com.accounting.repositories.interfaces.BookRepository;
+import com.accounting.repositories.interfaces.TransactionRepository;
+import com.accounting.shared.errors.Errors;
+import com.accounting.shared.exceptions.ConflictException;
 import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +19,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    TransactionRepository transactionRepository;
 
     @Override
     public Book create(Book book) {
@@ -35,6 +41,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void delete(Long id) {
+
+        if (transactionRepository.countByBook(id) > 0) {
+            throw new ConflictException().addError(Errors.BOOK_HAS_TRANSACTION_ERROR);
+        }
+
         bookRepository.deleteById(id);
     }
 

@@ -120,4 +120,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
 
+
+    @ExceptionHandler(value = ConflictException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Object> handleConflictException(ConflictException e) {
+
+        var apiResponse = new ApiResponse().setStatusCode(HttpStatus.BAD_REQUEST);
+
+        if (e != null && e.getErrors() != null) {
+            apiResponse.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
+        }
+
+        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+    }
+
+
 }

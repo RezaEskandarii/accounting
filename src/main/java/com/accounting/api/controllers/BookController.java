@@ -39,6 +39,26 @@ public class BookController extends BaseController {
         return new ResponseEntity<>(resp, resp.statusCode);
     }
 
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<ApiResponse> create(@PathVariable Long id) {
+
+        bookAppService.delete(id);
+        var resp = new ApiResponse()
+                .setStatusCode(HttpStatus.OK);
+
+        return new ResponseEntity<>(resp, resp.statusCode);
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<ApiResponse> update(@Valid @RequestBody CreateUpdateBookDto dto, @PathVariable Long id, Locale locale) {
+        var resp = new ApiResponse()
+                .setData(bookAppService.update(id, dto))
+                .setStatusCode(HttpStatus.OK);
+
+        return new ResponseEntity<>(resp, resp.statusCode);
+    }
+
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
         var resp = new ApiResponse()
