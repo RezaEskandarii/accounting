@@ -5,6 +5,8 @@ import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.cfg.Environment;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,13 +21,16 @@ import java.util.Map;
 @Configuration
 public class HibernateConfig {
 
+    @Autowired
+    ConfigurationReader configurationReader;
+
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         return new HibernateJpaVendorAdapter();
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaProperties jpaProperties,
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, @org.jetbrains.annotations.NotNull JpaProperties jpaProperties,
                                                                        MultiTenantConnectionProvider multiTenantConnectionProvider, CurrentTenantIdentifierResolver tenantIdentifierResolver) {
 
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -37,10 +42,10 @@ public class HibernateConfig {
         jpaPropertiesMap.put(Environment.MULTI_TENANT, MultiTenancyStrategy.SCHEMA);
         jpaPropertiesMap.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
         jpaPropertiesMap.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantIdentifierResolver);
-        jpaPropertiesMap.put(Environment.SHOW_SQL, true);
-        jpaPropertiesMap.put(Environment.FORMAT_SQL, true);
-        jpaPropertiesMap.put(Environment.HBM2DDL_AUTO, "update");
-        jpaPropertiesMap.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
+        jpaPropertiesMap.put(Environment.SHOW_SQL, configurationReader.hibernateShowSQL);
+        jpaPropertiesMap.put(Environment.FORMAT_SQL, configurationReader.hibernateFormatSQL);
+        jpaPropertiesMap.put(Environment.HBM2DDL_AUTO, configurationReader.hibernateHBM2DDL);
+        jpaPropertiesMap.put(Environment.DIALECT, configurationReader.sqlDialect);
         em.setJpaPropertyMap(jpaPropertiesMap);
 
         return em;
