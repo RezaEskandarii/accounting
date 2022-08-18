@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
+import org.jetbrains.annotations.NotNull;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, @org.jetbrains.annotations.NotNull JpaProperties jpaProperties,
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, @NotNull JpaProperties jpaProperties,
                                                                        MultiTenantConnectionProvider multiTenantConnectionProvider, CurrentTenantIdentifierResolver tenantIdentifierResolver) {
 
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();

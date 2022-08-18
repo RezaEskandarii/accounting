@@ -17,8 +17,8 @@ public class AccountingApplication implements CommandLineRunner {
 
         try {
             SpringApplication.run(AccountingApplication.class, args);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            log.debug(e.getMessage());
         }
     }
 

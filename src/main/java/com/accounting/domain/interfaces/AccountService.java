@@ -4,8 +4,10 @@ import com.accounting.contract.dto.PaginationInput;
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.entitites.Account;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+
 
 public interface AccountService {
 

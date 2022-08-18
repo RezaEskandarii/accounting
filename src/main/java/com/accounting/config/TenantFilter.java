@@ -22,12 +22,13 @@ public class TenantFilter implements Filter {
             FilterChain chain) throws IOException, ServletException {
 
         var req = (HttpServletRequest) request;
-
+      //  log.info(req.toString());
+       // System.out.println(req.toString());
         //  var tenantIdStr = req.getHeader(tenantId);
 //        if ("".equals(tenantIdStr) || tenantIdStr == null) {
 //            throw new ServletException("X-TenantId header is null");
 //        } else {
-//            TenantContext.setCurrentTenant(tenantIdStr);
+        //  TenantContext.setCurrentTenant("1");
         chain.doFilter(request, response);
 //        }
     }

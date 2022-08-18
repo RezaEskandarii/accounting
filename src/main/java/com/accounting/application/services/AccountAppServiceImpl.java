@@ -10,6 +10,7 @@ import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 public class AccountAppServiceImpl implements AccountAppService {
 
