@@ -23,7 +23,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account update(Long id, Account account) {
-        return null;
+        account.id = id;
+        return accountRepository.save(account);
     }
 
     @Override

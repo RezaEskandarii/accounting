@@ -6,6 +6,7 @@ import com.accounting.contract.dto.accounts.AccountDTO;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 
 public interface AccountAppService {

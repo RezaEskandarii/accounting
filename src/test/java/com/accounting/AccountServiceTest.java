@@ -1,35 +1,38 @@
 package com.accounting;
 
-import com.accounting.contract.dto.accounts.AccountDTO;
-import com.accounting.services.AccountService;
-import org.junit.jupiter.api.Test;
+import com.accounting.contract.dto.accounts.AccountCreateDto;
+import com.accounting.contract.interfaces.AccountAppService;
+import com.accounting.domain.entitites.AccountGroup;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(value = false)
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class AccountServiceTest {
 
     @Autowired
-    private AccountService accountService;
+    private AccountAppService accountAppService;
+
+    private AccountGroup
 
     @Test
     public void TestCanCreateNewAccount() {
-        var ac = new AccountDTO();
-        ac.setCode("1234");
-        ac.setDescription("just for test");
-        ac.setName("receivable account");
+
+
+        var ac = new AccountCreateDto();
+        ac.setName("test");
+        ac.setCode("1002");
         ac.setRoot(false);
+        ac.setDescription("test");
 
-        var result = accountService.create(ac);
-
-        assertNotEquals(result.getId(), 0);
+        var result = accountAppService.create(ac);
         assertNotNull(result);
-        assertEquals(ac.getCode(), result.getCode());
+
+
     }
 }

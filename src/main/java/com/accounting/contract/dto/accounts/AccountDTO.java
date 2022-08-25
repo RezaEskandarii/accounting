@@ -1,5 +1,6 @@
 package com.accounting.contract.dto.accounts;
 
+import com.accounting.contract.dto.BaseDto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Getter
 @Data
-public class AccountDTO {
+public class AccountDTO extends BaseDto {
 
     @Valid
     @Length(min = 2, message = "{account.name.required}")

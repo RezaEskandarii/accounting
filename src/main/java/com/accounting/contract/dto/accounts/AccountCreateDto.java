@@ -1,11 +1,19 @@
 package com.accounting.contract.dto.accounts;
 
+import com.accounting.contract.dto.BaseDto;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-public class AccountCreateDto {
+@Setter
+@Getter
+@Data
+public class AccountCreateDto extends BaseDto {
 
     @Valid
     @Length(min = 2, message = "{account.name.required}")
