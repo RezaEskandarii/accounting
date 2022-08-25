@@ -3,6 +3,7 @@ package com.accounting.domain.services;
 import com.accounting.contract.dto.PaginationInput;
 import com.accounting.domain.entitites.AccountGroup;
 import com.accounting.repositories.interfaces.AccountGroupRepository;
+import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,7 +33,9 @@ public class AccountGroupService implements com.accounting.domain.interfaces.Acc
 
     @Override
     public Optional<AccountGroup> find(Long id) {
-        return accountGroupRepository.findById(id);
+        var result = accountGroupRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
+
+        return Optional.of(result);
     }
 
     @Override

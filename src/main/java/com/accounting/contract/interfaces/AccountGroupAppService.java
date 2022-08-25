@@ -1,6 +1,8 @@
 package com.accounting.contract.interfaces;
 
+import com.accounting.contract.dto.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
+import org.springframework.data.domain.Page;
 
 public interface AccountGroupAppService {
     public AccountGroupDto create(AccountGroupDto groupDto);
@@ -11,5 +13,7 @@ public interface AccountGroupAppService {
 
     public AccountGroupDto update(long id, AccountGroupDto groupDto);
 
-    public AccountGroupDto delete(long id);
+    public void delete(long id);
+
+    public Page<AccountGroupDto> findAll(PaginationInput input);
 }
