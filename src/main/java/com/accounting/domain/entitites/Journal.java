@@ -16,12 +16,18 @@ import java.util.*;
 @Table(name = "journals")
 public class Journal extends BaseEntity {
 
+    @Temporal(TemporalType.DATE)
     private Date date;
+
     private String memo;
+
     private int sequence;
 
     @JoinColumn(name = "journal_id")
     @OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 }

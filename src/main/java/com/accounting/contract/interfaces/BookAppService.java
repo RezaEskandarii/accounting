@@ -8,8 +8,12 @@ import org.springframework.data.domain.Page;
 public interface BookAppService {
 
     public BookDto create(CreateUpdateBookDto bookDto);
+
     public BookDto update(Long id, CreateUpdateBookDto bookDto);
+
     public BookDto find(Long id);
+
     public void delete(Long id);
+
     public Page<BookDto> findAll(PaginationInput input);
 }
