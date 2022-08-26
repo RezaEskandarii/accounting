@@ -11,15 +11,12 @@ import org.springframework.data.domain.Page;
 
 public class AccountGroupAppServiceImpl implements AccountGroupAppService {
 
+    @Autowired
     private AccountGroupService accountGroupService;
 
+    @Autowired
     private AccountGroupMapper accountGroupMapper;
 
-    @Autowired
-    public AccountGroupAppServiceImpl(AccountGroupService accountGroupService, AccountGroupMapper accountGroupMapper) {
-        this.accountGroupService = accountGroupService;
-        this.accountGroupMapper = accountGroupMapper;
-    }
 
     @Override
     public AccountGroupDto create(AccountGroupDto groupDto) {

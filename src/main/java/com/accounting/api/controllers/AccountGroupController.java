@@ -4,7 +4,7 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
-import com.accounting.services.AccountGroupService;
+import com.accounting.contract.interfaces.AccountGroupAppService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,7 +21,7 @@ import java.util.Locale;
 public class AccountGroupController {
 
     @Autowired
-    AccountGroupService AccountGroupService;
+    AccountGroupAppService accountGroupAppService;
 
     @Autowired
     MessageSource messageSource;
@@ -30,7 +30,7 @@ public class AccountGroupController {
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountGroupDto dto) {
         var resp = new ApiResponse();
 
-        resp.data = AccountGroupService.create(dto);
+        resp.data = accountGroupAppService.create(dto);
         resp.statusCode = HttpStatus.OK;
         resp.message = messageSource.getMessage("http.ok.message", null, Locale.ENGLISH);
 
@@ -40,7 +40,7 @@ public class AccountGroupController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
         var result = new ApiResponse(
-                AccountGroupService.findById(id),
+                accountGroupAppService.findById(id),
                 HttpStatus.OK
         );
         return new ResponseEntity<>(result, result.statusCode);
@@ -49,17 +49,17 @@ public class AccountGroupController {
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
 
-        var resp = new ApiResponse(AccountGroupService.findAll(paginationInput), HttpStatus.OK);
+        var resp = new ApiResponse(accountGroupAppService.findAll(paginationInput), HttpStatus.OK);
         return new ResponseEntity<>(resp, resp.statusCode);
     }
 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ApiResponse> update(@RequestBody AccountGroupDto AccountGroupDTO,
+    public ResponseEntity<ApiResponse> update(@RequestBody AccountGroupDto accountGroupDto,
                                               @PathVariable Long id) {
         var resp = new ApiResponse();
 
-        resp.data = AccountGroupService.update(AccountGroupDTO, id);
+        resp.data = accountGroupAppService.update(id,accountGroupDto);
         resp.statusCode = HttpStatus.OK;
 
         return new ResponseEntity<>(resp, resp.statusCode);
@@ -71,7 +71,7 @@ public class AccountGroupController {
     public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
 
         var resp = new ApiResponse();
-        AccountGroupService.delete(id);
+        accountGroupAppService.delete(id);
         resp.statusCode = HttpStatus.OK;
 
         return new ResponseEntity<>(resp, resp.statusCode);

@@ -1,8 +1,10 @@
 package com.accounting;
 
+import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.interfaces.AccountAppService;
-import com.accounting.domain.entitites.AccountGroup;
+import com.accounting.contract.interfaces.AccountGroupAppService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,13 @@ public class AccountServiceTest {
     @Autowired
     private AccountAppService accountAppService;
 
-    private AccountGroup
+    @Autowired
+    private AccountGroupAppService accountGroupAppService;
 
     @Test
     public void TestCanCreateNewAccount() {
 
+        var ag = accountGroupAppService.create(new AccountGroupDto());
 
         var ac = new AccountCreateDto();
         ac.setName("test");
@@ -35,4 +39,7 @@ public class AccountServiceTest {
 
 
     }
+
 }
+
+

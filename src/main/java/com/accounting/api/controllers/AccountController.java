@@ -33,11 +33,12 @@ public class AccountController {
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountCreateDto dto, Locale locale) {
         var resp = new ApiResponse();
 
-        resp.data = accountService.create(dto);
-        resp.statusCode = HttpStatus.OK;
-        resp.message = messageSource.getMessage("http.ok.message", null, locale);
+            resp.data = accountService.create(dto);
+            resp.statusCode = HttpStatus.OK;
+            resp.message = messageSource.getMessage("http.ok.message", null, locale);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+            return new ResponseEntity<>(resp, resp.statusCode);
+
     }
 
     @GetMapping("/{id}")

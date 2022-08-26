@@ -1,6 +1,8 @@
 package com.accounting.contract.dto.accountGroups;
 
+import com.accounting.contract.dto.BaseDto;
 import com.accounting.shared.enums.AccountGroupType;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Getter
 @Setter
-public class AccountGroupDto {
+public class AccountGroupDto extends BaseDto {
 
     @Valid
     @Length(min = 2, message = "{account_group.code.min.length}")

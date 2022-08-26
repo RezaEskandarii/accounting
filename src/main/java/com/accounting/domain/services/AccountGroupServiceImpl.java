@@ -10,15 +10,12 @@ import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
-public class AccountGroupService implements com.accounting.domain.interfaces.AccountGroupService {
+public class AccountGroupServiceImpl implements com.accounting.domain.interfaces.AccountGroupService {
 
-
-    private AccountGroupRepository accountGroupRepository;
 
     @Autowired
-    public AccountGroupService(AccountGroupRepository accountGroupRepository) {
-        this.accountGroupRepository = accountGroupRepository;
-    }
+    private AccountGroupRepository accountGroupRepository;
+
 
     @Override
     public AccountGroup create(AccountGroup accountGroup) {

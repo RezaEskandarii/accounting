@@ -1,7 +1,7 @@
 package com.accounting.contract.dto.accounts;
 
 import com.accounting.contract.dto.BaseDto;
-import lombok.Builder;
+import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,11 +23,12 @@ public class AccountCreateDto extends BaseDto {
     @Length(min = 4, max = 4, message = "{account.code.min.length}")
     private String code;
 
+    @NotNull
     private boolean isRoot;
 
     private String description;
 
-    @Valid
-    @NotNull(message = "{account.group_id.required}")
-    private Long accountGroupId;
+
+    @NotNull
+    private AccountGroupDto accountGroup;
 }
