@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,12 @@ import java.util.List;
 @Data
 public class JournalDto extends BaseDto {
 
+    @NotNull
     private Date date;
+    @NotNull
     private String memo;
-    private int sequence;
+    @NotNull
     private List<TransactionDto> transactions = new ArrayList<>();
+    @NotNull
     private BookDto book;
 }

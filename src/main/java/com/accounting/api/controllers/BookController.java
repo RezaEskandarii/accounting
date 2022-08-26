@@ -41,7 +41,7 @@ public class BookController extends BaseController {
 
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<ApiResponse> create(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
 
         bookAppService.delete(id);
         var resp = new ApiResponse()

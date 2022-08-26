@@ -3,15 +3,19 @@ package com.accounting.beans;
 import com.accounting.application.services.AccountAppServiceImpl;
 import com.accounting.application.services.AccountGroupAppServiceImpl;
 import com.accounting.application.services.BookAppServiceImpl;
+import com.accounting.application.services.JournalAppServiceImpl;
 import com.accounting.contract.interfaces.AccountAppService;
 import com.accounting.contract.interfaces.AccountGroupAppService;
 import com.accounting.contract.interfaces.BookAppService;
+import com.accounting.contract.interfaces.JournalAppService;
 import com.accounting.domain.interfaces.AccountGroupService;
 import com.accounting.domain.interfaces.AccountService;
 import com.accounting.domain.interfaces.BookService;
+import com.accounting.domain.interfaces.JournalService;
 import com.accounting.domain.services.AccountGroupServiceImpl;
 import com.accounting.domain.services.AccountServiceImpl;
 import com.accounting.domain.services.BookServiceImpl;
+import com.accounting.domain.services.JournalServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -46,5 +50,15 @@ public class Beans {
     @Bean
     public AccountGroupAppService getAccountGroupAppService() {
         return new AccountGroupAppServiceImpl();
+    }
+
+    @Bean
+    public JournalService getJournalServiceBean() {
+        return new JournalServiceImpl();
+    }
+
+    @Bean
+    public JournalAppService getJournalAppServiceBean() {
+        return new JournalAppServiceImpl();
     }
 }
