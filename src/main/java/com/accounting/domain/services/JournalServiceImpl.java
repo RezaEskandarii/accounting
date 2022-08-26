@@ -17,6 +17,9 @@ public class JournalServiceImpl implements JournalService {
 
     @Override
     public Journal create(Journal journal) {
+
+        journal.getTransactions().forEach(x -> x.setBook(journal.getBook()));
+
         return journalRepository.save(journal);
     }
 
