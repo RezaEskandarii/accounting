@@ -1,9 +1,11 @@
 package com.accounting.domain.entitites;
 
+import com.accounting.shared.JpaConverterJson;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,10 +18,13 @@ import java.math.BigDecimal;
 @Table(name = "transactions")
 public class Transaction extends BaseEntity {
 
+    @Column(name = "credit_value")
     private BigDecimal debitValue;
 
+    @Column(name = "debit_value")
     private BigDecimal creditValue;
 
+    @Column(name = "memo")
     private String memo;
 
     @ManyToOne
@@ -32,4 +37,8 @@ public class Transaction extends BaseEntity {
 
     @ManyToOne(targetEntity = Journal.class, cascade = CascadeType.ALL)
     private Journal journal;
+
+
+    @Column(columnDefinition = "jsonb", name = "data")
+    private String data;
 }

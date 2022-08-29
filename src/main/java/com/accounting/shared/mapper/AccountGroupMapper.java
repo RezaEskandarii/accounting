@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccountGroupMapper extends BaseMapper {
 
+    public AccountGroupMapper() {
+        super();
+    }
+
     public AccountGroup mapToAccountGroup(Object model) {
         return modelMapper.map(model, AccountGroup.class);
     }

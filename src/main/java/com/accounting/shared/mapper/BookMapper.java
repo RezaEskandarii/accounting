@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookMapper extends BaseMapper {
 
+    public BookMapper() {
+        super();
+    }
+
     public BookDto mapToBookDto(Book book) {
         return modelMapper.map(book, BookDto.class);
     }

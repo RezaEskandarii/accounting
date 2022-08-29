@@ -5,10 +5,12 @@ import com.accounting.domain.entitites.Journal;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class JournalMapper extends BaseMapper {
     public JournalMapper() {
-        modelMapper = new ModelMapper();
+        super();
     }
 
     public Journal mapToJournal(Object model) {
@@ -18,4 +20,5 @@ public class JournalMapper extends BaseMapper {
     public JournalDto mapToJournalDTO(Object model) {
         return modelMapper.map(model, JournalDto.class);
     }
+
 }

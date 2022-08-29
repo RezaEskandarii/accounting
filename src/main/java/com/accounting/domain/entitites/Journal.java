@@ -19,12 +19,14 @@ public class Journal extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+    @Column(name = "memo")
     private String memo;
 
+    @Column(name = "seq")
     private int sequence;
 
     @JoinColumn(name = "journal_id")
-    @OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Transaction> transactions = new ArrayList<>();
 
     @ManyToOne

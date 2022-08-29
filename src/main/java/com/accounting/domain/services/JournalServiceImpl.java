@@ -18,7 +18,9 @@ public class JournalServiceImpl implements JournalService {
     @Override
     public Journal create(Journal journal) {
 
-        journal.getTransactions().forEach(x -> x.setBook(journal.getBook()));
+        for (var tnx : journal.getTransactions()) {
+            tnx.setBook(journal.getBook());
+        }
 
         return journalRepository.save(journal);
     }
@@ -26,6 +28,9 @@ public class JournalServiceImpl implements JournalService {
     @Override
     public Journal update(Long id, Journal journal) {
         journal.id = id;
+        for (var tnx : journal.getTransactions()) {
+            tnx.setBook(journal.getBook());
+        }
         return journalRepository.save(journal);
     }
 

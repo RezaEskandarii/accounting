@@ -15,10 +15,11 @@ public class BaseMapper {
         modelMapper.getConfiguration().setPropertyCondition(Conditions.isNotNull());
     }
 
-    <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
+    public <S, T> List<T> mapToList(List<S> source, Class<T> targetClass) {
         return source
                 .stream()
                 .map(element -> modelMapper.map(element, targetClass))
                 .collect(Collectors.toList());
     }
+
 }

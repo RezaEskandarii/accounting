@@ -59,6 +59,6 @@ public class JournalAppServiceImpl implements JournalAppService {
     @Override
     public Page<JournalDto> findAll(PaginationInput input) {
         var journals = journalService.findAll(input);
-        return journals.map(j -> journalMapper.mapToJournalDTO(j));
+        return journals.map(x -> journalMapper.mapToJournalDTO(x));
     }
 }
