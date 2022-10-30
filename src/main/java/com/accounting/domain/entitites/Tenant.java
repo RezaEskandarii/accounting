@@ -3,6 +3,9 @@ package com.accounting.domain.entitites;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Immutable;
+import org.hibernate.annotations.Subselect;
+import org.hibernate.annotations.Synchronize;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -17,16 +20,22 @@ import java.util.Set;
 })
 public class Tenant extends BaseEntity {
 
+    public Tenant() {
+
+    }
+
     @Column(name = "title", length = 100)
     public String title;
 
     @Column(name = "hash", length = 255)
     public String hash;
 
-    @Column(columnDefinition = "jsonb")
-    public String extraData;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+//    @Column(columnDefinition = "json")
+//    @JsonRawValue
+//    private MetaData extraData ;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "tenant_members",
             joinColumns = {@JoinColumn(name = "user_id")},

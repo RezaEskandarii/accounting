@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "account_groups")
-public class AccountGroup extends BaseEntity{
+public class AccountGroup extends BaseEntity {
 
     @Column(unique = true)
     private String code;
@@ -22,6 +22,7 @@ public class AccountGroup extends BaseEntity{
     @Column(unique = true, length = 125)
     private String name;
 
+    @Column(name = "group_type")
     private AccountGroupType groupType;
 
     @OneToMany(mappedBy = "accountGroup", cascade = CascadeType.ALL)

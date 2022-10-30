@@ -15,10 +15,12 @@ public abstract class BaseEntity {
 
     @DateTimeFormat
     @CreationTimestamp
+    @Temporal(TemporalType.TIME)
     public Date createdAt;
 
     @DateTimeFormat
     @UpdateTimestamp
+    @Temporal(TemporalType.DATE)
     public Date updatedAt;
 
 

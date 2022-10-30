@@ -4,17 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "public")
-public class User extends BaseEntity implements UserDetails {
+public class User extends BaseEntity  implements UserDetails {
+
 
     @Column(unique = true)
     private String username;
@@ -22,7 +20,7 @@ public class User extends BaseEntity implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
     private Set<Tenant> tenants;
 
     @Override
@@ -64,5 +62,8 @@ public class User extends BaseEntity implements UserDetails {
         this.password = encodedPassword;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
 }

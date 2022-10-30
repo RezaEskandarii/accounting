@@ -6,14 +6,21 @@ import com.accounting.contract.dto.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import com.accounting.contract.interfaces.AccountAppService;
+import com.accounting.domain.entitites.Account;
+import com.accounting.domain.entitites.Book;
+import com.accounting.domain.entitites.Transaction;
+import com.accounting.repositories.interfaces.AccountRepository;
+import com.accounting.utils.PageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.Join;
 import javax.validation.Valid;
 import java.util.Locale;
 
@@ -28,6 +35,9 @@ public class AccountController {
 
     @Autowired
     MessageSource messageSource;
+
+    @Autowired
+    AccountRepository accountRepository;
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountCreateDto dto, Locale locale) {
@@ -80,4 +90,15 @@ public class AccountController {
 
         return new ResponseEntity<>(resp, resp.statusCode);
     }
+
+
+
+//    @GetMapping("/l")
+//    public ResponseEntity<ApiResponse> fff(){
+//        var r = new ApiResponse();
+//        var t  = new PaginationInput();
+//        t.setPageNumber(0);
+//        r.data = accountRepository.llll(PageUtils.GetRequest(t));
+//        return new ResponseEntity<>(r, HttpStatus.CHECKPOINT);
+//    }
 }
