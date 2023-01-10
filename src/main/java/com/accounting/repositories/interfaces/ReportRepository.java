@@ -1,32 +1,34 @@
 package com.accounting.repositories.interfaces;
 
 import com.accounting.domain.entitites.Book;
-import com.accounting.domain.entitites.Transaction;
-import com.sun.istack.Nullable;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class ReportRepository     {
+@Component
+public class ReportRepository {
 
+    @Autowired
     EntityManager em;
 
     // constructor
 
-    List<Book> findBooksByAuthorNameAndTitle(String authorName, String title) {
+    public List<Book> findBooksByAuthorNameAndTitle(String authorName, String title) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
 
         Root<Book> book = cq.from(Book.class);
-        Predicate authorNamePredicate = cb.equal(book.get("author"), authorName);
-        Predicate titlePredicate = cb.like(book.get("title"), "%" + title + "%");
+        Predicate authorNamePredicate = cb.equal(book.get("name"), authorName);
+        Predicate titlePredicate = cb.like(book.get("name"), "%" + title + "%");
         cq.where(authorNamePredicate, titlePredicate);
-         book.join("Transaction");
+
 
         TypedQuery<Book> query = em.createQuery(cq);
         return query.getResultList();

@@ -3,9 +3,6 @@ package com.accounting.domain.entitites;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Subselect;
-import org.hibernate.annotations.Synchronize;
 
 import javax.persistence.*;
 import java.util.HashSet;

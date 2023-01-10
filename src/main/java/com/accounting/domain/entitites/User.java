@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "public")
-public class User extends BaseEntity  implements UserDetails {
+public class User extends BaseEntity implements UserDetails {
 
 
     @Column(unique = true)
@@ -20,7 +20,7 @@ public class User extends BaseEntity  implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @ManyToMany(mappedBy = "users",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private Set<Tenant> tenants;
 
     @Override

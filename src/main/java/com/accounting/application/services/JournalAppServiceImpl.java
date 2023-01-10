@@ -1,6 +1,6 @@
 package com.accounting.application.services;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
 import com.accounting.domain.interfaces.JournalService;

@@ -1,8 +1,7 @@
 package com.accounting.application.services;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
-import com.accounting.contract.dto.accounts.AccountDTO;
 import com.accounting.contract.interfaces.AccountGroupAppService;
 import com.accounting.domain.interfaces.AccountGroupService;
 import com.accounting.shared.mapper.AccountGroupMapper;

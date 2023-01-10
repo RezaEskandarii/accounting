@@ -1,4 +1,4 @@
-package com.accounting.contract.dto;
+package com.accounting.shared.filters;
 
 import lombok.Getter;
 import lombok.Setter;

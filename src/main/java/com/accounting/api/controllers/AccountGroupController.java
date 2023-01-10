@@ -2,7 +2,7 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.interfaces.AccountGroupAppService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,12 +1,10 @@
 package com.accounting.contract.interfaces;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountDTO;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 
 public interface AccountAppService {

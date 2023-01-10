@@ -1,10 +1,7 @@
 package com.accounting.domain.interfaces;
 
-import com.accounting.contract.dto.PaginationInput;
-import com.accounting.contract.dto.book.BookDto;
-import com.accounting.domain.entitites.Account;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Book;
-import com.accounting.utils.PageUtils;
 import org.springframework.data.domain.Page;
 
 import java.util.Optional;

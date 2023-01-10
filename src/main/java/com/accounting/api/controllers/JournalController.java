@@ -2,9 +2,11 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
+import com.accounting.repositories.interfaces.JournalRepository;
+import com.accounting.repositories.interfaces.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,12 @@ public class JournalController extends BaseController {
 
     @Autowired
     private JournalAppService journalAppService;
+
+    @Autowired
+    private JournalRepository myRepository;
+
+    @Autowired
+    private  ReportRepository reportRepository;
 
     @PostMapping
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody JournalDto dto) {
@@ -65,5 +73,21 @@ public class JournalController extends BaseController {
                 .setStatusCode(HttpStatus.OK);
 
         return new ResponseEntity<>(resp, resp.statusCode);
+    }
+
+    @GetMapping(path = "/my")
+    public ResponseEntity<ApiResponse> my() {
+
+       try{
+           var resp = new ApiResponse()
+                   .setData(reportRepository.findBooksByAuthorNameAndTitle("5","5"))
+                   .setStatusCode(HttpStatus.OK);
+
+           return new ResponseEntity<>(resp, resp.statusCode);
+       }catch (Exception e){
+           System.out.println(e.getMessage());
+           System.out.println(e.getCause());
+       }
+       return null;
     }
 }

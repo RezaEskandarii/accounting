@@ -1,6 +1,6 @@
 package com.accounting.domain.services;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.interfaces.AccountService;
 import com.accounting.repositories.interfaces.AccountRepository;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 
-import java.util.List;
 import java.util.Optional;
 
 public class AccountServiceImpl implements AccountService {

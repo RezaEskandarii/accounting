@@ -25,7 +25,7 @@ public class Account extends BaseEntity {
     @Column(nullable = true)
     private int level;
 
-    @Column(nullable = false,name = "is_root")
+    @Column(nullable = false, name = "is_root")
     private boolean isRoot;
 
     @Column(nullable = true)

@@ -1,11 +1,9 @@
 package com.accounting.domain.entitites;
 
-import com.accounting.shared.JpaConverterJson;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

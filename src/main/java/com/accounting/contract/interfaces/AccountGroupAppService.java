@@ -1,6 +1,6 @@
 package com.accounting.contract.interfaces;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import org.springframework.data.domain.Page;
 

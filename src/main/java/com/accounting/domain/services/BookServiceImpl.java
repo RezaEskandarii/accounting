@@ -1,6 +1,6 @@
 package com.accounting.domain.services;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Book;
 import com.accounting.domain.interfaces.BookService;
 import com.accounting.repositories.interfaces.BookRepository;

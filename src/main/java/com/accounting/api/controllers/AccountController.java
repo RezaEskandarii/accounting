@@ -2,25 +2,19 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import com.accounting.contract.interfaces.AccountAppService;
-import com.accounting.domain.entitites.Account;
-import com.accounting.domain.entitites.Book;
-import com.accounting.domain.entitites.Transaction;
 import com.accounting.repositories.interfaces.AccountRepository;
-import com.accounting.utils.PageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.Join;
 import javax.validation.Valid;
 import java.util.Locale;
 

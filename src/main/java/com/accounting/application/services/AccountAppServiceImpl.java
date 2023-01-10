@@ -1,6 +1,6 @@
 package com.accounting.application.services;
 
-import com.accounting.contract.dto.PaginationInput;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountDTO;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
@@ -10,7 +10,6 @@ import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 
 public class AccountAppServiceImpl implements AccountAppService {
 
