@@ -121,6 +121,11 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+			<version>3.14.15</version>
+		</dependency>
 
         <!--		<dependency>-->
 
