@@ -1,10 +1,10 @@
 package com.accounting.domain.services;
 
+import com.accounting.repositories.interfaces.BookCrudRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Book;
-import com.accounting.domain.interfaces.BookService;
-import com.accounting.repositories.interfaces.BookRepository;
-import com.accounting.repositories.interfaces.TransactionRepository;
+import com.accounting.domain.interfaces.BookRepository;
+import com.accounting.repositories.interfaces.TransactionCrudRepository;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.ConflictException;
 import com.accounting.utils.PageUtils;
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class BookRepositoryImpl implements BookRepository {
 
     @Autowired
-    BookRepository bookRepository;
+    BookCrudRepository bookRepository;
 
     @Autowired
-    TransactionRepository transactionRepository;
+    TransactionCrudRepository transactionRepository;
 
     @Override
     public Book create(Book book) {

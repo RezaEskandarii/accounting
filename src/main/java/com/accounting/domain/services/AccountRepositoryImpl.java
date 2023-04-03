@@ -1,9 +1,9 @@
 package com.accounting.domain.services;
 
+import com.accounting.repositories.interfaces.AccountCrudRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Account;
-import com.accounting.domain.interfaces.AccountService;
-import com.accounting.repositories.interfaces.AccountRepository;
+import com.accounting.domain.interfaces.AccountRepository;
 import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,10 +11,10 @@ import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
-public class AccountServiceImpl implements AccountService {
+public class AccountRepositoryImpl implements AccountRepository {
 
     @Autowired
-    AccountRepository accountRepository;
+    AccountCrudRepository accountRepository;
 
     @Override
     public Account create(Account account) {

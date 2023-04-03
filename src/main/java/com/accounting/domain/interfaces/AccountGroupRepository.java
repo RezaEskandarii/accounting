@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
-public interface AccountGroupService {
+public interface AccountGroupRepository {
     public AccountGroup create(AccountGroup accountGroup);
 
     public AccountGroup update(Long id, AccountGroup accountGroup);

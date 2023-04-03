@@ -8,7 +8,7 @@ import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.DuplicatedItemException;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.mapper.AccountMapper;
-import com.accounting.repositories.interfaces.AccountRepository;
+import com.accounting.repositories.interfaces.AccountCrudRepository;
 import com.accounting.utils.PageUtils;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
@@ -23,7 +23,7 @@ import java.util.List;
 public class AccountService {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountCrudRepository accountRepository;
 
     @Autowired
     private AccountMapper accountMapper;

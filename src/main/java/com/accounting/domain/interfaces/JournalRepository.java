@@ -4,7 +4,7 @@ import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Journal;
 import org.springframework.data.domain.Page;
 
-public interface JournalService {
+public interface JournalRepository {
     public Journal create(Journal journal);
 
     public Journal update(Long id, Journal journal);

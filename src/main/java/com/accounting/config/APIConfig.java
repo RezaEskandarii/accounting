@@ -8,4 +8,5 @@ public class APIConfig {
     public static final String USERS_CONTROLLER = API_VERSION + "/users";
     public static final String BOOKS_CONTROLLER = API_VERSION + "/books";
     public static final String JOURNALS_CONTROLLER = API_VERSION + "/journals";
+    public static final String REPORT_CONTROLLER = API_VERSION + "/reports";
 }

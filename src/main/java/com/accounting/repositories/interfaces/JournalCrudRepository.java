@@ -8,6 +8,6 @@ import javax.transaction.Transactional;
 
 @Transactional
 @Repository
-public interface JournalRepository extends JpaRepository<Journal, Long> {
+public interface JournalCrudRepository extends JpaRepository<Journal, Long> {
 
 }

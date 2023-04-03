@@ -8,7 +8,7 @@ import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.DuplicatedItemException;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.mapper.AccountGroupMapper;
-import com.accounting.repositories.interfaces.AccountGroupRepository;
+import com.accounting.repositories.interfaces.AccountGroupCrudRepository;
 import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class AccountGroupService {
     @Autowired
-    private AccountGroupRepository accountGroupRepository;
+    private AccountGroupCrudRepository accountGroupRepository;
 
     @Autowired
     private AccountGroupMapper accountGroupMapper;

@@ -37,6 +37,6 @@ public class Transaction extends BaseEntity {
     private Journal journal;
 
 
-    @Column(columnDefinition = "jsonb", name = "data")
+  ///  @Column(columnDefinition = "jsonb", name = "data")
     private String data;
 }

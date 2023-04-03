@@ -17,8 +17,8 @@ import java.util.List;
 @Data
 public class JournalDto extends BaseDto {
 
-    @NotNull
-    private Date date;
+   // @NotNull
+    private Date date ;
     @NotNull
     private String memo;
     @NotNull

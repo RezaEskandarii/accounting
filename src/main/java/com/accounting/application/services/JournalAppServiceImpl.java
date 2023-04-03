@@ -3,7 +3,7 @@ package com.accounting.application.services;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
-import com.accounting.domain.interfaces.JournalService;
+import com.accounting.domain.interfaces.JournalRepository;
 import com.accounting.shared.mapper.JournalMapper;
 import com.accounting.validator.JournalValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 public class JournalAppServiceImpl implements JournalAppService {
 
     @Autowired
-    private JournalService journalService;
+    private JournalRepository journalService;
 
     @Autowired
     private JournalMapper journalMapper;

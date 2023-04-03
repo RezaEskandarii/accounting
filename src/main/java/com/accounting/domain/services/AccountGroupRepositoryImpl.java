@@ -1,8 +1,9 @@
 package com.accounting.domain.services;
 
+import com.accounting.domain.interfaces.AccountGroupRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.AccountGroup;
-import com.accounting.repositories.interfaces.AccountGroupRepository;
+import com.accounting.repositories.interfaces.AccountGroupCrudRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,11 @@ import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
-public class AccountGroupServiceImpl implements com.accounting.domain.interfaces.AccountGroupService {
+public class AccountGroupRepositoryImpl implements AccountGroupRepository {
 
 
     @Autowired
-    private AccountGroupRepository accountGroupRepository;
+    private AccountGroupCrudRepository accountGroupRepository;
 
 
     @Override

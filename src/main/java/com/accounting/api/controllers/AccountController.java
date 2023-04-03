@@ -6,7 +6,7 @@ import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import com.accounting.contract.interfaces.AccountAppService;
-import com.accounting.repositories.interfaces.AccountRepository;
+import com.accounting.repositories.interfaces.AccountCrudRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -31,7 +31,7 @@ public class AccountController {
     MessageSource messageSource;
 
     @Autowired
-    AccountRepository accountRepository;
+    AccountCrudRepository accountRepository;
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountCreateDto dto, Locale locale) {

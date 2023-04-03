@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
-public interface BookService {
+public interface BookRepository {
 
     public Book create(Book book);
 
