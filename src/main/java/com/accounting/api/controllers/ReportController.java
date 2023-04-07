@@ -22,10 +22,10 @@ public class ReportController extends BaseController {
 
     @GetMapping("/trial-balance")
     public ResponseEntity<ApiResponse> getTrialBalanceReport(
-            @RequestParam("accountId") long accountId,
-            @RequestParam("journalId") long journalId,
-            @RequestParam("fromDate") LocalDate fromDate,
-            @RequestParam("toDate") LocalDate toDate
+            @RequestParam(required = false) Long accountId,
+            @RequestParam(required = false) Long journalId,
+            @RequestParam(required = false) LocalDate fromDate,
+            @RequestParam(required = false) LocalDate toDate
     ) {
 
         var data = reportAppService.getTrialBalanceReport(accountId, journalId, fromDate, toDate);

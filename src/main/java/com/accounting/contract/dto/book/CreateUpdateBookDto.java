@@ -18,7 +18,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Setter
-@Getter
+@Getter()
 public class CreateUpdateBookDto extends BaseDto {
 
     @Valid

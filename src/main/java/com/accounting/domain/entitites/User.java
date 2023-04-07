@@ -28,6 +28,8 @@ public class User extends BaseEntity implements UserDetails {
         return null;
     }
 
+    private String email;
+
     @Override
     public String getPassword() {
         return null;
@@ -66,4 +68,11 @@ public class User extends BaseEntity implements UserDetails {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

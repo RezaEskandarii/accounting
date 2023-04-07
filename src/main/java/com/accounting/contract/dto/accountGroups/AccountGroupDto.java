@@ -2,7 +2,6 @@ package com.accounting.contract.dto.accountGroups;
 
 import com.accounting.contract.dto.BaseDto;
 import com.accounting.shared.enums.AccountGroupType;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
