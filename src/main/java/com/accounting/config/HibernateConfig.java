@@ -30,7 +30,8 @@ public class HibernateConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, @NotNull JpaProperties jpaProperties,
-                                                                       MultiTenantConnectionProvider multiTenantConnectionProvider, CurrentTenantIdentifierResolver tenantIdentifierResolver) {
+                                                                       MultiTenantConnectionProvider multiTenantConnectionProvider,
+                                                                       CurrentTenantIdentifierResolver tenantIdentifierResolver) {
 
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource);
@@ -41,10 +42,10 @@ public class HibernateConfig {
         jpaPropertiesMap.put(Environment.MULTI_TENANT, MultiTenancyStrategy.SCHEMA);
         jpaPropertiesMap.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantConnectionProvider);
         jpaPropertiesMap.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, tenantIdentifierResolver);
-        jpaPropertiesMap.put(Environment.SHOW_SQL, configurationReader.hibernateShowSQL);
-        jpaPropertiesMap.put(Environment.FORMAT_SQL, configurationReader.hibernateFormatSQL);
-        jpaPropertiesMap.put(Environment.HBM2DDL_AUTO, configurationReader.hibernateHBM2DDL);
-        jpaPropertiesMap.put(Environment.DIALECT, configurationReader.sqlDialect);
+        jpaPropertiesMap.put(Environment.SHOW_SQL, configurationReader.jpaShowSql);
+        jpaPropertiesMap.put(Environment.FORMAT_SQL, configurationReader.jpaFormatSql);
+        jpaPropertiesMap.put(Environment.HBM2DDL_AUTO, configurationReader.jpaDdlAuto);
+        jpaPropertiesMap.put(Environment.DIALECT, configurationReader.jpaDatabasePlatform);
         em.setJpaPropertyMap(jpaPropertiesMap);
 
         return em;

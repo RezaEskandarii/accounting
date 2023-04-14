@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -43,6 +44,10 @@ public class UserService implements UserDetailsService {
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         return repository.save(user);
+    }
+
+    public Optional<User> findByUsername(String username){
+        return repository.findByUsername(username);
     }
 
     @Override

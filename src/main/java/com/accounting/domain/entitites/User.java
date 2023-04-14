@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name = "users", schema = "public")
 public class User extends BaseEntity implements UserDetails {
 
-
     @Column(unique = true)
     private String username;
 
@@ -23,21 +22,22 @@ public class User extends BaseEntity implements UserDetails {
     @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private Set<Tenant> tenants;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
+    @Column(unique = true, length = 50)
     private String email;
 
     @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new HashSet<>();
+    }
+
+    @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setPassword(String encodedPassword) {
@@ -74,5 +74,16 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", tenants=" + tenants +
+                ", email='" + email + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }
