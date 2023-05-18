@@ -6,13 +6,9 @@ import com.accounting.services.UserService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.awt.*;
-import java.net.URI;
 
 
 @SpringBootApplication
@@ -35,16 +31,20 @@ public class AccountingApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
-            Desktop.getDesktop().browse(new URI("https://www.google.com"));
 
-            var user = userService.findByUsername("ad");
+            var username = "admin";
+            var user = userService.findByUsername(username);
 
             if (user.isEmpty()) {
                 var adminUser = new User();
                 adminUser.setPassword("123456");
-                adminUser.setUsername("ad");
+                adminUser.setUsername(username);
                 adminUser.setEmail("admin@admin.cofm");
-                userService.createUser(adminUser);
+                adminUser.setEnabled(true);
+                adminUser.setAccountNonExpired(true);
+                adminUser.setCredentialsNonExpired(true);
+                adminUser.setAccountNonLocked(true);
+                userService.create(adminUser);
 
                 System.out.println(adminUser.toString());
             }

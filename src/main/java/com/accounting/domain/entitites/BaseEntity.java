@@ -15,12 +15,12 @@ public abstract class BaseEntity {
 
     @DateTimeFormat
     @CreationTimestamp
-    @Temporal(TemporalType.TIME)
+    @Column(name = "created_at")
     public Date createdAt;
 
     @DateTimeFormat
     @UpdateTimestamp
-    @Temporal(TemporalType.DATE)
+    @Column(name = "updated_at")
     public Date updatedAt;
 
 
