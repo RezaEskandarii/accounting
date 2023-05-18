@@ -1,4 +1,4 @@
-package com.accounting.api.Filters;
+package com.accounting.api.filters;
 
 import com.accounting.services.UserService;
 import com.accounting.utils.JwtUtils;

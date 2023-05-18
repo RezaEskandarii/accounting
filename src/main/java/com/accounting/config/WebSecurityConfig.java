@@ -1,9 +1,9 @@
 package com.accounting.config;
 
 
-import com.accounting.api.Filters.JwtAuthenticationEntryPoint;
-import com.accounting.api.Filters.JwtAuthenticationFilter;
-import com.accounting.api.Filters.JwtAuthorizationFilter;
+import com.accounting.api.filters.JwtAuthenticationEntryPoint;
+import com.accounting.api.filters.JwtAuthenticationFilter;
+import com.accounting.api.filters.JwtAuthorizationFilter;
 import com.accounting.services.UserService;
 import com.accounting.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;

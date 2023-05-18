@@ -1,4 +1,4 @@
-package com.accounting.api.Filters;
+package com.accounting.api.filters;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

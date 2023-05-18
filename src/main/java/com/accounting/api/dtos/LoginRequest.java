@@ -1,4 +1,4 @@
-package com.accounting.api.DTOs;
+package com.accounting.api.dtos;
 
 import org.hibernate.validator.constraints.NotBlank;
 

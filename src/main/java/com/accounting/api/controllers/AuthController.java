@@ -1,7 +1,7 @@
 package com.accounting.api.controllers;
 
-import com.accounting.api.DTOs.JwtResponse;
-import com.accounting.api.DTOs.LoginRequest;
+import com.accounting.api.dtos.JwtResponse;
+import com.accounting.api.dtos.LoginRequest;
 import com.accounting.config.APIConfig;
 import com.accounting.services.UserService;
 import com.accounting.utils.JwtUtils;

@@ -1,4 +1,4 @@
-package com.accounting.api.DTOs;
+package com.accounting.api.dtos;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -7,13 +7,9 @@ import java.util.Collection;
 public class JwtResponse {
 
     private String token;
-
     private String refreshToken;
-
     private String type = "Bearer";
-
     private String username;
-
     private Collection<? extends GrantedAuthority> authorities;
 
     public JwtResponse(String token, String refreshToken, String username,
