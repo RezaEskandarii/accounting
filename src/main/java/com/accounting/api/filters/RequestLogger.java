@@ -41,7 +41,7 @@ public class RequestLogger implements HandlerInterceptor {
         // Log the response details
         LOGGER.info("Request completed - requestId: {}, status code: {}, duration: {} ms",
                 context.getRequestId(), response.getStatus(), duration);
-
+        System.out.println("***********************");
         // Remove the RequestContext from the ThreadLocal
         REQUEST_CONTEXT.remove();
     }
@@ -61,6 +61,14 @@ public class RequestLogger implements HandlerInterceptor {
 
         public long getStartTime() {
             return startTime;
+        }
+
+        @Override
+        public String toString() {
+            return "RequestContext{" +
+                    "requestId=" + requestId +
+                    ", startTime=" + startTime +
+                    '}';
         }
     }
 }

@@ -24,8 +24,12 @@ public class AccountingApplication implements CommandLineRunner {
 
 
     public static void main(String[] args) {
-        System.out.println("########## application started ##########");
-        SpringApplication.run(AccountingApplication.class, args);
+       try {
+           System.out.println("########## application started ##########");
+           SpringApplication.run(AccountingApplication.class, args);
+       }catch (Exception e){
+           System.out.println(e.getMessage());
+       }
     }
 
     @Override
