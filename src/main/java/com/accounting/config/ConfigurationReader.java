@@ -3,10 +3,12 @@ package com.accounting.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 
 @Configuration
 @PropertySource("classpath:application.properties")
+@Component
 public class ConfigurationReader {
 
     @Value("${server.port}")
@@ -60,41 +62,41 @@ public class ConfigurationReader {
     @Value("${spring.datasource.platform}")
     public String datasourcePlatform;
 
-    @Value("${log4j.logger.org.hibernate}")
-    public String hibernateLogger;
-
-    @Value("${log4j.logger.org.hibernate.SQL}")
-    public String hibernateSqlLogger;
-
-    @Value("${log4j.logger.org.hibernate.type}")
-    public String hibernateTypeLogger;
-
-    @Value("${log4j.logger.org.hibernate.hql.ast.AST}")
-    public String hibernateHqlAstLogger;
-
-    @Value("${log4j.logger.org.hibernate.tool.hbm2ddl}")
-    public String hibernateToolLogger;
-
-    @Value("${log4j.logger.org.hibernate.hql}")
-    public String hibernateHqlLogger;
-
-    @Value("${log4j.logger.org.hibernate.cache}")
-    public String hibernateCacheLogger;
-
-    @Value("${log4j.logger.org.hibernate.jdbc}")
-    public String hibernateJdbcLogger;
-
-    @Value("${log4j.appender.hb}")
-    public String hibernateAppender;
-
-    @Value("${log4j.appender.hb.layout}")
-    public String hibernateLayout;
-
-    @Value("${log4j.appender.hb.layout.ConversionPattern}")
-    public String hibernateConversionPattern;
-
-    @Value("${log4j.appender.hb.Threshold}")
-    public String hibernateThreshold;
+//    @Value("${log4j.logger.org.hibernate}")
+//    public String hibernateLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.SQL}")
+//    public String hibernateSqlLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.type}")
+//    public String hibernateTypeLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.hql.ast.AST}")
+//    public String hibernateHqlAstLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.tool.hbm2ddl}")
+//    public String hibernateToolLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.hql}")
+//    public String hibernateHqlLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.cache}")
+//    public String hibernateCacheLogger;
+//
+//    @Value("${log4j.logger.org.hibernate.jdbc}")
+//    public String hibernateJdbcLogger;
+//
+//    @Value("${log4j.appender.hb}")
+//    public String hibernateAppender;
+//
+//    @Value("${log4j.appender.hb.layout}")
+//    public String hibernateLayout;
+//
+//    @Value("${log4j.appender.hb.layout.ConversionPattern}")
+//    public String hibernateConversionPattern;
+//
+//    @Value("${log4j.appender.hb.Threshold}")
+//    public String hibernateThreshold;
 
     @Value("${SerializationFeature.FAIL_ON_EMPTY_BEANS}")
     public boolean serializationFailOnEmptyBeans;

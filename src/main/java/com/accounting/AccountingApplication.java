@@ -1,6 +1,7 @@
 package com.accounting;
 
 
+import com.accounting.config.ConfigurationReader;
 import com.accounting.domain.entitites.User;
 import com.accounting.services.UserService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -17,23 +18,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AccountingApplication implements CommandLineRunner {
 
     private final UserService userService;
+    private final ConfigurationReader configurationReader;
 
-    public AccountingApplication(UserService userService) {
+    public AccountingApplication(UserService userService, ConfigurationReader configurationReader) {
         this.userService = userService;
+        this.configurationReader = configurationReader;
     }
 
 
     public static void main(String[] args) {
-       try {
-           System.out.println("########## application started ##########");
-           SpringApplication.run(AccountingApplication.class, args);
-       }catch (Exception e){
-           System.out.println(e.getMessage());
-       }
+        SpringApplication.run(AccountingApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.printf("########## application started on port %s ##########", configurationReader.serverPort);
         try {
 
             var username = "admin";
@@ -53,6 +52,7 @@ public class AccountingApplication implements CommandLineRunner {
                 System.out.println(adminUser.toString());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
         }
     }

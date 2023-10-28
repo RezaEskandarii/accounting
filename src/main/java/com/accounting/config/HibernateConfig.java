@@ -20,8 +20,8 @@ import java.util.Map;
 @Configuration
 public class HibernateConfig {
 
-    @Autowired
-    ConfigurationReader configurationReader;
+
+    ConfigurationReader configurationReader = new ConfigurationReader();
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
