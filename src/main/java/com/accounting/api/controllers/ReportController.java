@@ -17,8 +17,11 @@ import java.time.LocalDate;
 @RequestMapping(value = APIConfig.REPORT_CONTROLLER)
 public class ReportController extends BaseController {
 
-    @Autowired
-    private ReportAppService reportAppService;
+    private final ReportAppService reportAppService;
+
+    public ReportController(ReportAppService reportAppService) {
+        this.reportAppService = reportAppService;
+    }
 
     @GetMapping("/trial-balance")
     public ResponseEntity<ApiResponse> getTrialBalanceReport(

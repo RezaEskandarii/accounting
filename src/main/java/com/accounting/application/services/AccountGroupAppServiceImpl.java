@@ -5,16 +5,22 @@ import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.interfaces.AccountGroupAppService;
 import com.accounting.domain.interfaces.AccountGroupRepository;
 import com.accounting.shared.mapper.AccountGroupMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountGroupAppServiceImpl implements AccountGroupAppService {
 
-    @Autowired
-    private AccountGroupRepository accountGroupService;
 
-    @Autowired
-    private AccountGroupMapper accountGroupMapper;
+    final AccountGroupRepository accountGroupService;
+
+
+    final AccountGroupMapper accountGroupMapper;
+
+    public AccountGroupAppServiceImpl(AccountGroupRepository accountGroupService, AccountGroupMapper accountGroupMapper) {
+        this.accountGroupService = accountGroupService;
+        this.accountGroupMapper = accountGroupMapper;
+    }
 
 
     @Override

@@ -11,19 +11,24 @@ import com.accounting.shared.exceptions.InvalidDataException;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.mapper.BookMapper;
 import com.accounting.utils.DateUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-
+@Component
 public class BookAppServiceImpl implements BookAppService {
 
-    @Autowired
-    BookRepository bookService;
 
-    @Autowired
-    BookMapper bookMapper;
+    final BookRepository bookService;
+
+
+    final BookMapper bookMapper;
+
+    public BookAppServiceImpl(BookRepository bookService, BookMapper bookMapper) {
+        this.bookService = bookService;
+        this.bookMapper = bookMapper;
+    }
 
     @Override
     public BookDto create(CreateUpdateBookDto bookDto) {

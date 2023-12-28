@@ -6,9 +6,7 @@ import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import com.accounting.contract.interfaces.AccountAppService;
-import com.accounting.repositories.interfaces.AccountCrudRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,24 +22,25 @@ import java.util.Locale;
 @Validated
 public class AccountController {
 
-    @Autowired
-    AccountAppService accountService;
+    final AccountAppService accountService;
 
-    @Autowired
-    MessageSource messageSource;
+    final MessageSource messageSource;
 
-    @Autowired
-    AccountCrudRepository accountRepository;
+    public AccountController(AccountAppService accountService, MessageSource messageSource) {
+        this.accountService = accountService;
+        this.messageSource = messageSource;
+    }
+
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountCreateDto dto, Locale locale) {
         var resp = new ApiResponse();
 
-            resp.data = accountService.create(dto);
-            resp.statusCode = HttpStatus.OK;
-            resp.message = messageSource.getMessage("http.ok.message", null, locale);
+        resp.data = accountService.create(dto);
+        resp.statusCode = HttpStatus.OK;
+        resp.message = messageSource.getMessage("http.ok.message", null, locale);
 
-            return new ResponseEntity<>(resp, resp.statusCode);
+        return new ResponseEntity<>(resp, resp.statusCode);
 
     }
 
@@ -85,14 +84,4 @@ public class AccountController {
         return new ResponseEntity<>(resp, resp.statusCode);
     }
 
-
-
-//    @GetMapping("/l")
-//    public ResponseEntity<ApiResponse> fff(){
-//        var r = new ApiResponse();
-//        var t  = new PaginationInput();
-//        t.setPageNumber(0);
-//        r.data = accountRepository.llll(PageUtils.GetRequest(t));
-//        return new ResponseEntity<>(r, HttpStatus.CHECKPOINT);
-//    }
 }

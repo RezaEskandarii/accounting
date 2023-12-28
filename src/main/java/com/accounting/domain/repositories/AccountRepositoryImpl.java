@@ -1,20 +1,25 @@
-package com.accounting.domain.services;
+package com.accounting.domain.repositories;
 
-import com.accounting.repositories.interfaces.AccountCrudRepository;
+import com.accounting.crudrepositories.interfaces.AccountCrudRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.interfaces.AccountRepository;
 import com.accounting.utils.PageUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
 
 import java.util.Optional;
 
+@Component
 public class AccountRepositoryImpl implements AccountRepository {
 
-    @Autowired
-    AccountCrudRepository accountRepository;
+
+    private final AccountCrudRepository accountRepository;
+
+    public AccountRepositoryImpl(AccountCrudRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     @Override
     public Account create(Account account) {

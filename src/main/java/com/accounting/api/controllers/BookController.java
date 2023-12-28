@@ -17,8 +17,11 @@ import java.util.Locale;
 @RequestMapping(path = APIConfig.BOOKS_CONTROLLER)
 public class BookController extends BaseController {
 
-    @Autowired
-    BookAppService bookAppService;
+    final BookAppService bookAppService;
+
+    public BookController(BookAppService bookAppService) {
+        this.bookAppService = bookAppService;
+    }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> find(@PathVariable Long id) {

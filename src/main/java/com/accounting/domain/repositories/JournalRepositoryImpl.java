@@ -1,19 +1,23 @@
-package com.accounting.domain.services;
+package com.accounting.domain.repositories;
 
-import com.accounting.repositories.interfaces.JournalCrudRepository;
+import com.accounting.crudrepositories.interfaces.JournalCrudRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Journal;
 import com.accounting.domain.interfaces.JournalRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.utils.PageUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JournalRepositoryImpl implements JournalRepository {
 
 
-    @Autowired
-    private JournalCrudRepository journalRepository;
+    private final JournalCrudRepository journalRepository;
+
+    public JournalRepositoryImpl(JournalCrudRepository journalRepository) {
+        this.journalRepository = journalRepository;
+    }
 
     @Override
     public Journal create(Journal journal) {

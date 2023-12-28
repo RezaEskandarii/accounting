@@ -5,9 +5,7 @@ import com.accounting.config.APIConfig;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
-import com.accounting.repositories.interfaces.JournalCrudRepository;
-import com.accounting.repositories.interfaces.ReportRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.accounting.crudrepositories.interfaces.ReportRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +18,17 @@ import java.util.Locale;
 public class JournalController extends BaseController {
 
 
-    @Autowired
-    private JournalAppService journalAppService;
+    private final JournalAppService journalAppService;
 
-    @Autowired
-    private JournalCrudRepository myRepository;
+    private final ReportRepository reportRepository;
 
-    @Autowired
-    private ReportRepository reportRepository;
+    public JournalController(JournalAppService journalAppService, ReportRepository reportRepository) {
+        this.journalAppService = journalAppService;
+        this.reportRepository = reportRepository;
+    }
 
     @PostMapping
-    public ResponseEntity<ApiResponse> create( @RequestBody JournalDto dto) {
+    public ResponseEntity<ApiResponse> create(@RequestBody JournalDto dto) {
         var resp = new ApiResponse()
                 .setData(journalAppService.create(dto))
                 .setStatusCode(HttpStatus.OK);

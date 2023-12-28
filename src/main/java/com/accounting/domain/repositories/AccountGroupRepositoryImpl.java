@@ -1,21 +1,25 @@
-package com.accounting.domain.services;
+package com.accounting.domain.repositories;
 
 import com.accounting.domain.interfaces.AccountGroupRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.AccountGroup;
-import com.accounting.repositories.interfaces.AccountGroupCrudRepository;
+import com.accounting.crudrepositories.interfaces.AccountGroupCrudRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.utils.PageUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class AccountGroupRepositoryImpl implements AccountGroupRepository {
 
 
-    @Autowired
-    private AccountGroupCrudRepository accountGroupRepository;
+    private final AccountGroupCrudRepository accountGroupRepository;
+
+    public AccountGroupRepositoryImpl(AccountGroupCrudRepository accountGroupRepository) {
+        this.accountGroupRepository = accountGroupRepository;
+    }
 
 
     @Override

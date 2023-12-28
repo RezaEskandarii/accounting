@@ -1,27 +1,30 @@
-package com.accounting.domain.services;
+package com.accounting.domain.repositories;
 
-import com.accounting.repositories.interfaces.BookCrudRepository;
+import com.accounting.crudrepositories.interfaces.BookCrudRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Book;
 import com.accounting.domain.interfaces.BookRepository;
-import com.accounting.repositories.interfaces.TransactionCrudRepository;
+import com.accounting.crudrepositories.interfaces.TransactionCrudRepository;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.ConflictException;
 import com.accounting.utils.PageUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-
+@Component
 public class BookRepositoryImpl implements BookRepository {
 
-    @Autowired
-    BookCrudRepository bookRepository;
 
-    @Autowired
-    TransactionCrudRepository transactionRepository;
+    private final BookCrudRepository bookRepository;
+
+    private final TransactionCrudRepository transactionRepository;
+
+    public BookRepositoryImpl(BookCrudRepository bookRepository, TransactionCrudRepository transactionRepository) {
+        this.bookRepository = bookRepository;
+        this.transactionRepository = transactionRepository;
+    }
 
     @Override
     public Book create(Book book) {

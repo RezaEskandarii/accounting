@@ -1,8 +1,8 @@
-package com.accounting.domain.services;
+package com.accounting.domain.repositories;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
 import com.accounting.domain.entitites.Transaction;
-import com.accounting.repositories.interfaces.ReportRepository;
+import com.accounting.crudrepositories.interfaces.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManagerFactory;

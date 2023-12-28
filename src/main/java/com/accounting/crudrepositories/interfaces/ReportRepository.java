@@ -1,4 +1,4 @@
-package com.accounting.repositories.interfaces;
+package com.accounting.crudrepositories.interfaces;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
 

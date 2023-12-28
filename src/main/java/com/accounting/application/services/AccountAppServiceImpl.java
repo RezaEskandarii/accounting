@@ -8,16 +8,21 @@ import com.accounting.contract.interfaces.AccountAppService;
 import com.accounting.domain.interfaces.AccountRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.mapper.AccountMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountAppServiceImpl implements AccountAppService {
 
-    @Autowired
-    AccountRepository accountService;
 
-    @Autowired
-    AccountMapper accountMapper;
+    final AccountRepository accountService;
+
+    final AccountMapper accountMapper;
+
+    public AccountAppServiceImpl(AccountRepository accountService, AccountMapper accountMapper) {
+        this.accountService = accountService;
+        this.accountMapper = accountMapper;
+    }
 
     @Override
     public AccountDTO create(AccountCreateDto accountCreateDto) {

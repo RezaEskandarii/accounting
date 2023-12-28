@@ -6,19 +6,24 @@ import com.accounting.contract.interfaces.JournalAppService;
 import com.accounting.domain.interfaces.JournalRepository;
 import com.accounting.shared.mapper.JournalMapper;
 import com.accounting.validator.JournalValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JournalAppServiceImpl implements JournalAppService {
 
-    @Autowired
-    private JournalRepository journalService;
 
-    @Autowired
-    private JournalMapper journalMapper;
+    private final JournalRepository journalService;
 
-    @Autowired
-    private JournalValidator journalValidator;
+    private final JournalMapper journalMapper;
+
+    private final JournalValidator journalValidator;
+
+    public JournalAppServiceImpl(JournalRepository journalService, JournalMapper journalMapper, JournalValidator journalValidator) {
+        this.journalService = journalService;
+        this.journalMapper = journalMapper;
+        this.journalValidator = journalValidator;
+    }
 
     @Override
     public JournalDto create(JournalDto dto) {
@@ -27,9 +32,7 @@ public class JournalAppServiceImpl implements JournalAppService {
         }
 
         var entity = journalMapper.mapToJournal(dto);
-        return journalMapper.mapToJournalDTO(
-                journalService.create(entity)
-        );
+        return journalMapper.mapToJournalDTO(journalService.create(entity));
     }
 
     @Override
@@ -41,9 +44,7 @@ public class JournalAppServiceImpl implements JournalAppService {
 
         var entity = journalMapper.mapToJournal(dto);
         entity.id = id;
-        return journalMapper.mapToJournalDTO(
-                journalService.update(id, entity)
-        );
+        return journalMapper.mapToJournalDTO(journalService.update(id, entity));
     }
 
     @Override

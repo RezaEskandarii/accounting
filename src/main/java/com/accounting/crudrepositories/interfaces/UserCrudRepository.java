@@ -1,4 +1,4 @@
-package com.accounting.repositories.interfaces;
+package com.accounting.crudrepositories.interfaces;
 
 import com.accounting.domain.entitites.User;
 import org.springframework.data.repository.CrudRepository;
@@ -9,7 +9,8 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserCrudRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
+
 }

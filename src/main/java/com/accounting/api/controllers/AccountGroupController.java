@@ -20,11 +20,14 @@ import java.util.Locale;
 @Slf4j
 public class AccountGroupController {
 
-    @Autowired
-    AccountGroupAppService accountGroupAppService;
+    final AccountGroupAppService accountGroupAppService;
 
-    @Autowired
-    MessageSource messageSource;
+    final MessageSource messageSource;
+
+    public AccountGroupController(AccountGroupAppService accountGroupAppService, MessageSource messageSource) {
+        this.accountGroupAppService = accountGroupAppService;
+        this.messageSource = messageSource;
+    }
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountGroupDto dto) {
@@ -59,7 +62,7 @@ public class AccountGroupController {
                                               @PathVariable Long id) {
         var resp = new ApiResponse();
 
-        resp.data = accountGroupAppService.update(id,accountGroupDto);
+        resp.data = accountGroupAppService.update(id, accountGroupDto);
         resp.statusCode = HttpStatus.OK;
 
         return new ResponseEntity<>(resp, resp.statusCode);
