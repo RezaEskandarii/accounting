@@ -11,7 +11,7 @@ public interface UserAppService {
 
     UserDto toggleStatus(Long userId, boolean enable);
 
-    UserDto changePassword(Long userId, String newPassword);
+     void changePassword(Long userId, String newPassword);
 
     void assignRole(Long userId, String roleName);
 

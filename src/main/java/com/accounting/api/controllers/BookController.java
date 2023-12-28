@@ -26,9 +26,7 @@ public class BookController extends BaseController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> find(@PathVariable Long id) {
         var resp = new ApiResponse()
-                .setData(bookAppService.find(id))
-                .setStatusCode(HttpStatus.OK);
-
+                .setData(bookAppService.find(id));
         return new ResponseEntity<>(resp, resp.statusCode);
     }
 

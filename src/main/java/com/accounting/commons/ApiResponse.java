@@ -13,7 +13,7 @@ public class ApiResponse {
 
     public ApiResponse(String message, HttpStatus statusCode, ZonedDateTime zonedDateTime, Object data) {
         this.message = message;
-        this.statusCode = statusCode;
+        this.statusCode = statusCode != null ? statusCode : HttpStatus.OK;
         this.zonedDateTime = zonedDateTime;
         this.data = data;
     }
@@ -44,6 +44,10 @@ public class ApiResponse {
     }
 
     public ApiResponse() {
+    }
+
+    public ApiResponse(Object data) {
+        this.data = data;
     }
 
     @Override

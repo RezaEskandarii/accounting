@@ -41,10 +41,9 @@ public class UserAppServiceImpl implements UserAppService {
     }
 
     @Override
-    public UserDto changePassword(Long userId, String newPassword) {
+    public void changePassword(Long userId, String newPassword) {
         var encodedPassword = passwordEncoder.encode(newPassword);
-        var result = userRepository.changePassword(userId, encodedPassword);
-        return userMapper.mapToUserDto(result);
+        userRepository.changePassword(userId, encodedPassword);
     }
 
     @Override
