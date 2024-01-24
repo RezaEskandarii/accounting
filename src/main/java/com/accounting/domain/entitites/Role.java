@@ -6,9 +6,10 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 @Setter
 @Getter
+@Entity
+@Table(name = "roles")
 public class Role {
 
     @Id

@@ -3,7 +3,6 @@ package com.accounting.api.controllers;
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.interfaces.ReportAppService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +32,6 @@ public class ReportController extends BaseController {
 
         var data = reportAppService.getTrialBalanceReport(accountId, journalId, fromDate, toDate);
         var resp = new ApiResponse(data, HttpStatus.OK);
-        return new ResponseEntity<>(resp, HttpStatus.OK);
-
+        return ResponseEntity.ok(resp);
     }
 }

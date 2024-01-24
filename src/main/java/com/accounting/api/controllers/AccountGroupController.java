@@ -2,11 +2,10 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.interfaces.AccountGroupAppService;
+import com.accounting.shared.filters.PaginationInput;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class AccountGroupController {
         resp.statusCode = HttpStatus.OK;
         resp.message = messageSource.getMessage("http.ok.message", null, Locale.ENGLISH);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping("/{id}")
@@ -53,7 +52,7 @@ public class AccountGroupController {
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
 
         var resp = new ApiResponse(accountGroupAppService.findAll(paginationInput), HttpStatus.OK);
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
 
@@ -65,8 +64,7 @@ public class AccountGroupController {
         resp.data = accountGroupAppService.update(id, accountGroupDto);
         resp.statusCode = HttpStatus.OK;
 
-        return new ResponseEntity<>(resp, resp.statusCode);
-
+        return ResponseEntity.ok(resp);
     }
 
 
@@ -77,6 +75,6 @@ public class AccountGroupController {
         accountGroupAppService.delete(id);
         resp.statusCode = HttpStatus.OK;
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 }

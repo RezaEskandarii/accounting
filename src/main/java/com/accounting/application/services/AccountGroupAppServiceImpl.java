@@ -1,9 +1,9 @@
 package com.accounting.application.services;
 
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.interfaces.AccountGroupAppService;
 import com.accounting.domain.interfaces.AccountGroupRepository;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.shared.mapper.AccountGroupMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;

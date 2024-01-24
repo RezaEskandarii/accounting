@@ -1,20 +1,20 @@
 package com.accounting.domain.interfaces;
 
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Book;
+import com.accounting.shared.filters.PaginationInput;
 import org.springframework.data.domain.Page;
 
 import java.util.Optional;
 
 public interface BookRepository {
 
-    public Book create(Book book);
+    Book create(Book book);
 
-    public Book update(Long id, Book book);
+    Book update(Long id, Book book);
 
-    public Optional<Book> find(Long id);
+    Optional<Book> find(Long id);
 
-    public void delete(Long id);
+    void delete(Long id);
 
-    public Page<Book> findAll(PaginationInput input);
+    Page<Book> findAll(PaginationInput input);
 }

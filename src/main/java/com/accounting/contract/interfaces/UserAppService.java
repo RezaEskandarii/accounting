@@ -1,11 +1,11 @@
 package com.accounting.contract.interfaces;
 
+import com.accounting.contract.dto.User.UserCreateDto;
 import com.accounting.contract.dto.User.UserDto;
 import com.accounting.contract.dto.User.UserUpdateDto;
-import com.accounting.domain.entitites.User;
 
 public interface UserAppService {
-    UserDto create(UserDto user);
+    UserDto create(UserCreateDto user);
 
     UserDto update(UserUpdateDto user);
 

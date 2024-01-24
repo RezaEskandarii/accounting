@@ -2,10 +2,9 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
 import com.accounting.contract.interfaces.BookAppService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.accounting.shared.filters.PaginationInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +26,7 @@ public class BookController extends BaseController {
     public ResponseEntity<ApiResponse> find(@PathVariable Long id) {
         var resp = new ApiResponse()
                 .setData(bookAppService.find(id));
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
 
@@ -37,7 +36,7 @@ public class BookController extends BaseController {
                 .setData(bookAppService.create(dto))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
 
@@ -48,7 +47,7 @@ public class BookController extends BaseController {
         var resp = new ApiResponse()
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @PutMapping(path = "/{id}")
@@ -57,7 +56,7 @@ public class BookController extends BaseController {
                 .setData(bookAppService.update(id, dto))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping(path = "")
@@ -66,6 +65,6 @@ public class BookController extends BaseController {
                 .setData(bookAppService.findAll(paginationInput))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 }

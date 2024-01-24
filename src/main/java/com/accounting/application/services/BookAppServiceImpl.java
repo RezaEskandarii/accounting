@@ -1,6 +1,5 @@
 package com.accounting.application.services;
 
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
 import com.accounting.contract.interfaces.BookAppService;
@@ -9,6 +8,7 @@ import com.accounting.shared.Constants;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.InvalidDataException;
 import com.accounting.shared.exceptions.ItemNotFoundException;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.shared.mapper.BookMapper;
 import com.accounting.utils.DateUtils;
 import org.springframework.data.domain.Page;

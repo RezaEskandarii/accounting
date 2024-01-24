@@ -2,10 +2,10 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
 import com.accounting.crudrepositories.interfaces.ReportRepository;
+import com.accounting.shared.filters.PaginationInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +33,7 @@ public class JournalController extends BaseController {
                 .setData(journalAppService.create(dto))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping("/{id}")
@@ -42,7 +42,7 @@ public class JournalController extends BaseController {
                 .setData(journalAppService.find(id))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @DeleteMapping(path = "/{id}")
@@ -52,7 +52,7 @@ public class JournalController extends BaseController {
         var resp = new ApiResponse()
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @PutMapping(path = "/{id}")
@@ -61,7 +61,7 @@ public class JournalController extends BaseController {
                 .setData(journalAppService.update(id, dto))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping(path = "")
@@ -70,7 +70,7 @@ public class JournalController extends BaseController {
                 .setData(journalAppService.findAll(paginationInput))
                 .setStatusCode(HttpStatus.OK);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
 

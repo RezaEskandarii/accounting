@@ -1,14 +1,15 @@
 package com.accounting.application.services;
 
+import com.accounting.contract.dto.User.UserCreateDto;
 import com.accounting.contract.dto.User.UserDto;
 import com.accounting.contract.dto.User.UserUpdateDto;
 import com.accounting.contract.interfaces.UserAppService;
 import com.accounting.domain.interfaces.UserRepository;
 import com.accounting.shared.mapper.UserMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class UserAppServiceImpl implements UserAppService {
 
     private final UserMapper userMapper;
@@ -23,7 +24,8 @@ public class UserAppServiceImpl implements UserAppService {
 
 
     @Override
-    public UserDto create(UserDto user) {
+    public UserDto create(UserCreateDto user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         var result = userRepository.create(userMapper.mapToUser(user));
         return userMapper.mapToUserDto(result);
     }

@@ -1,6 +1,5 @@
 package com.accounting.config;
 
-import com.accounting.api.filters.RequestLogger;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -15,10 +14,9 @@ import java.util.Locale;
 //@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private final RequestLogger requestLoggingInterceptor;
 
-    public WebMvcConfig(RequestLogger requestLoggingInterceptor) {
-        this.requestLoggingInterceptor = requestLoggingInterceptor;
+    public WebMvcConfig() {
+
     }
 
     @Bean
@@ -53,6 +51,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
-        registry.addInterceptor(requestLoggingInterceptor);
     }
 }

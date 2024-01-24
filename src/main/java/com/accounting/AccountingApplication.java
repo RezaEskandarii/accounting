@@ -31,7 +31,7 @@ public class AccountingApplication implements CommandLineRunner {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            e.printStackTrace();
+            log.error(e.getCause().getMessage());
         }
     }
 
@@ -41,7 +41,6 @@ public class AccountingApplication implements CommandLineRunner {
         InetAddress localhost = InetAddress.getLocalHost();
         String ipAddress = localhost.getHostAddress();
 
-        seedAdminUser();
 
         System.out.printf("running on %s:%d", ipAddress, configurationReader.serverPort);
     }

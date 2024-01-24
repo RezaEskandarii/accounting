@@ -1,12 +1,12 @@
 package com.accounting.domain.repositories;
 
 import com.accounting.crudrepositories.interfaces.BookCrudRepository;
-import com.accounting.shared.filters.PaginationInput;
+import com.accounting.crudrepositories.interfaces.TransactionCrudRepository;
 import com.accounting.domain.entitites.Book;
 import com.accounting.domain.interfaces.BookRepository;
-import com.accounting.crudrepositories.interfaces.TransactionCrudRepository;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.ConflictException;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;

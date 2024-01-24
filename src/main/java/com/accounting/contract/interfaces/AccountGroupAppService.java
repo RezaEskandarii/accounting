@@ -1,19 +1,19 @@
 package com.accounting.contract.interfaces;
 
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
+import com.accounting.shared.filters.PaginationInput;
 import org.springframework.data.domain.Page;
 
 public interface AccountGroupAppService {
-    public AccountGroupDto create(AccountGroupDto groupDto);
+    AccountGroupDto create(AccountGroupDto groupDto);
 
-    public AccountGroupDto findById(long id);
+    AccountGroupDto findById(long id);
 
-    public AccountGroupDto findByCode(String code);
+    AccountGroupDto findByCode(String code);
 
-    public AccountGroupDto update(long id, AccountGroupDto groupDto);
+    AccountGroupDto update(long id, AccountGroupDto groupDto);
 
-    public void delete(long id);
+    void delete(long id);
 
-    public Page<AccountGroupDto> findAll(PaginationInput input);
+    Page<AccountGroupDto> findAll(PaginationInput input);
 }

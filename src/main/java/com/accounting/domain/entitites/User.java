@@ -12,17 +12,25 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Entity
+
 @Setter
 @Getter
+@Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String username;
+
     private String password;
+
+    @Column(unique = true)
+    private String email;
+
     private boolean enabled;
 
     @ManyToMany(fetch = FetchType.EAGER)

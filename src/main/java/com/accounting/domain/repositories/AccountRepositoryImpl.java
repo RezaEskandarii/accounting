@@ -1,13 +1,12 @@
 package com.accounting.domain.repositories;
 
 import com.accounting.crudrepositories.interfaces.AccountCrudRepository;
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.interfaces.AccountRepository;
+import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-
 
 import java.util.Optional;
 

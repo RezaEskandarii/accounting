@@ -5,8 +5,9 @@ import com.accounting.contract.dto.TrialBalanceReportDto;
 import java.time.LocalDate;
 import java.util.List;
 
+
 public interface ReportRepository {
-    public List<TrialBalanceReportDto> getTrialBalanceReport(Long accountId, Long journalId, LocalDate fromDate, LocalDate toDate) ;
+    List<TrialBalanceReportDto> getTrialBalanceReport(Long accountId, Long journalId, LocalDate fromDate, LocalDate toDate);
 }
 
 

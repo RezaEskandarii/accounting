@@ -2,7 +2,6 @@ package com.accounting.contract.dto.journal;
 
 import com.accounting.contract.dto.BaseDto;
 import com.accounting.contract.dto.book.BookDto;
-import com.accounting.domain.entitites.Transaction;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

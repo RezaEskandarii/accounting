@@ -1,9 +1,9 @@
 package com.accounting.domain.repositories;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
-import com.accounting.domain.entitites.Transaction;
 import com.accounting.crudrepositories.interfaces.ReportRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.accounting.domain.entitites.Transaction;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.*;
@@ -12,11 +12,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+@Component
 public class ReportRepositoryImpl implements ReportRepository {
 
 
-    @Autowired
-    private EntityManagerFactory factory;
+    private final EntityManagerFactory factory;
+
+    public ReportRepositoryImpl(EntityManagerFactory factory) {
+        this.factory = factory;
+    }
 
     @Override
     public List<TrialBalanceReportDto> getTrialBalanceReport(Long accountId, Long journalId, LocalDate fromDate, LocalDate toDate) {

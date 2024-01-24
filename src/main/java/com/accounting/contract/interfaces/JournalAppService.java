@@ -1,17 +1,17 @@
 package com.accounting.contract.interfaces;
 
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.journal.JournalDto;
+import com.accounting.shared.filters.PaginationInput;
 import org.springframework.data.domain.Page;
 
 public interface JournalAppService {
-    public JournalDto create(JournalDto dto);
+    JournalDto create(JournalDto dto);
 
-    public JournalDto update(Long id, JournalDto dto);
+    JournalDto update(Long id, JournalDto dto);
 
-    public JournalDto find(Long id);
+    JournalDto find(Long id);
 
-    public void delete(Long id);
+    void delete(Long id);
 
-    public Page<JournalDto> findAll(PaginationInput input);
+    Page<JournalDto> findAll(PaginationInput input);
 }

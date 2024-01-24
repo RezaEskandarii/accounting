@@ -2,10 +2,10 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.shared.filters.PaginationInput;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import com.accounting.contract.interfaces.AccountAppService;
+import com.accounting.shared.filters.PaginationInput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -40,24 +40,23 @@ public class AccountController {
         resp.statusCode = HttpStatus.OK;
         resp.message = messageSource.getMessage("http.ok.message", null, locale);
 
-        return new ResponseEntity<>(resp, resp.statusCode);
-
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
-        var result = new ApiResponse(
+        var resp = new ApiResponse(
                 accountService.find(id),
                 HttpStatus.OK
         );
-        return new ResponseEntity<>(result, result.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
 
         var resp = new ApiResponse(accountService.findAll(paginationInput), HttpStatus.OK);
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
 
@@ -69,8 +68,7 @@ public class AccountController {
         resp.data = accountService.update(id, accountDTO);
         resp.statusCode = HttpStatus.OK;
 
-        return new ResponseEntity<>(resp, resp.statusCode);
-
+        return ResponseEntity.ok(resp);
     }
 
 
@@ -81,7 +79,7 @@ public class AccountController {
         accountService.delete(id);
         resp.statusCode = HttpStatus.OK;
 
-        return new ResponseEntity<>(resp, resp.statusCode);
+        return ResponseEntity.ok(resp);
     }
 
 }

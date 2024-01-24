@@ -4,7 +4,6 @@ import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.interfaces.AccountAppService;
 import com.accounting.contract.interfaces.AccountGroupAppService;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

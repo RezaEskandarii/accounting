@@ -4,20 +4,24 @@ import com.accounting.crudrepositories.interfaces.RoleCrudRepository;
 import com.accounting.crudrepositories.interfaces.UserCrudRepository;
 import com.accounting.domain.entitites.Role;
 import com.accounting.domain.entitites.User;
+import com.accounting.domain.interfaces.UserRepository;
+import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 
-public class UserRepository implements com.accounting.domain.interfaces.UserRepository {
+@Component
+public class UserRepositoryImpl implements UserRepository {
 
     private final UserCrudRepository userCrudRepository;
     private final RoleCrudRepository roleCrudRepository;
 
-    public UserRepository(UserCrudRepository userCrudRepository, RoleCrudRepository roleCrudRepository) {
+    public UserRepositoryImpl(UserCrudRepository userCrudRepository, RoleCrudRepository roleCrudRepository) {
         this.userCrudRepository = userCrudRepository;
         this.roleCrudRepository = roleCrudRepository;
     }
 
     @Override
     public User create(User user) {
+        user.setUsername(user.getEmail());
         return userCrudRepository.save(user);
     }
 
