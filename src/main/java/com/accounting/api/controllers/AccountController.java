@@ -34,21 +34,14 @@ public class AccountController {
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountCreateDto dto, Locale locale) {
-        var resp = new ApiResponse();
 
-        resp.data = accountService.create(dto);
-        resp.statusCode = HttpStatus.OK;
-        resp.message = messageSource.getMessage("http.ok.message", null, locale);
-
-        return ResponseEntity.ok(resp);
+        var data = accountService.create(dto);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
-        var resp = new ApiResponse(
-                accountService.find(id),
-                HttpStatus.OK
-        );
+        var resp = new ApiResponse(accountService.find(id));
         return ResponseEntity.ok(resp);
     }
 
@@ -63,23 +56,15 @@ public class AccountController {
     @PutMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> update(@RequestBody AccountUpdateDto accountDTO,
                                               @PathVariable Long id) {
-        var resp = new ApiResponse();
-
-        resp.data = accountService.update(id, accountDTO);
-        resp.statusCode = HttpStatus.OK;
-
-        return ResponseEntity.ok(resp);
+        var data = accountService.update(id, accountDTO);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
-
-        var resp = new ApiResponse();
         accountService.delete(id);
-        resp.statusCode = HttpStatus.OK;
-
-        return ResponseEntity.ok(resp);
+        return ResponseEntity.ok(new ApiResponse());
     }
 
 }

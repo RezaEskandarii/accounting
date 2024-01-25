@@ -6,12 +6,10 @@ import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
 import com.accounting.crudrepositories.interfaces.ReportRepository;
 import com.accounting.shared.filters.PaginationInput;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Locale;
 
 @RestController
 @RequestMapping(value = APIConfig.JOURNALS_CONTROLLER)
@@ -29,48 +27,32 @@ public class JournalController extends BaseController {
 
     @PostMapping
     public ResponseEntity<ApiResponse> create(@RequestBody JournalDto dto) {
-        var resp = new ApiResponse()
-                .setData(journalAppService.create(dto))
-                .setStatusCode(HttpStatus.OK);
-
-        return ResponseEntity.ok(resp);
+        var data = journalAppService.create(dto);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
-        var resp = new ApiResponse()
-                .setData(journalAppService.find(id))
-                .setStatusCode(HttpStatus.OK);
-
-        return ResponseEntity.ok(resp);
+        var data = journalAppService.find(id);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
-
         journalAppService.delete(id);
-        var resp = new ApiResponse()
-                .setStatusCode(HttpStatus.OK);
-
-        return ResponseEntity.ok(resp);
+        return ResponseEntity.ok(new ApiResponse());
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ApiResponse> update(@Valid @RequestBody JournalDto dto, @PathVariable Long id, Locale locale) {
-        var resp = new ApiResponse()
-                .setData(journalAppService.update(id, dto))
-                .setStatusCode(HttpStatus.OK);
-
-        return ResponseEntity.ok(resp);
+    public ResponseEntity<ApiResponse> update(@Valid @RequestBody JournalDto dto, @PathVariable Long id) {
+        var data = journalAppService.update(id, dto);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
-        var resp = new ApiResponse()
-                .setData(journalAppService.findAll(paginationInput))
-                .setStatusCode(HttpStatus.OK);
-
-        return ResponseEntity.ok(resp);
+        var data = journalAppService.findAll(paginationInput);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
 

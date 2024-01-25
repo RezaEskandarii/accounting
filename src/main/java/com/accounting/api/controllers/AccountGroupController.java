@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Locale;
 
 @RestController
 @RequestMapping(path = APIConfig.ACCOUNT_GROUPS_CONTROLLER)
@@ -30,22 +29,16 @@ public class AccountGroupController {
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountGroupDto dto) {
-        var resp = new ApiResponse();
-
-        resp.data = accountGroupAppService.create(dto);
-        resp.statusCode = HttpStatus.OK;
-        resp.message = messageSource.getMessage("http.ok.message", null, Locale.ENGLISH);
-
-        return ResponseEntity.ok(resp);
+        var data = accountGroupAppService.create(dto);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
         var result = new ApiResponse(
-                accountGroupAppService.findById(id),
-                HttpStatus.OK
+                accountGroupAppService.findById(id)
         );
-        return new ResponseEntity<>(result, result.statusCode);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping(path = "")
@@ -59,22 +52,15 @@ public class AccountGroupController {
     @PutMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> update(@RequestBody AccountGroupDto accountGroupDto,
                                               @PathVariable Long id) {
-        var resp = new ApiResponse();
-
-        resp.data = accountGroupAppService.update(id, accountGroupDto);
-        resp.statusCode = HttpStatus.OK;
-
-        return ResponseEntity.ok(resp);
+        var data = accountGroupAppService.update(id, accountGroupDto);
+        return ResponseEntity.ok(new ApiResponse(data));
     }
 
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> delete(@PathVariable Long id) {
 
-        var resp = new ApiResponse();
         accountGroupAppService.delete(id);
-        resp.statusCode = HttpStatus.OK;
-
-        return ResponseEntity.ok(resp);
+        return ResponseEntity.ok(new ApiResponse());
     }
 }
