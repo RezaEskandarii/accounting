@@ -1,8 +1,8 @@
 package com.accounting.domain.repositories;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
+import com.accounting.contract.interfaces.ReportRepository;
 import com.accounting.domain.entitites.Transaction;
-import com.accounting.jparepository.ReportRepository;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManagerFactory;

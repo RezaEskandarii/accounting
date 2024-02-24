@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface AccountGroupCrudRepository extends JpaRepository<AccountGroup, Long> {
+public interface AccountGroupJpaRepository extends JpaRepository<AccountGroup, Long> {
     AccountGroup findByName(String name);
 
     AccountGroup findByCode(String code);

@@ -1,4 +1,4 @@
-package com.accounting.jparepository;
+package com.accounting.contract.interfaces;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
 

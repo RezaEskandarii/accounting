@@ -3,18 +3,18 @@ package com.accounting.domain.repositories;
 import com.accounting.domain.entitites.Role;
 import com.accounting.domain.entitites.User;
 import com.accounting.domain.interfaces.UserRepository;
-import com.accounting.jparepository.RoleCrudRepository;
-import com.accounting.jparepository.UserCrudRepository;
+import com.accounting.jparepository.RoleJpaRepository;
+import com.accounting.jparepository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 
 @Component
 public class UserRepositoryImpl implements UserRepository {
 
-    private final UserCrudRepository userCrudRepository;
-    private final RoleCrudRepository roleCrudRepository;
+    private final UserJpaRepository userCrudRepository;
+    private final RoleJpaRepository roleCrudRepository;
 
-    public UserRepositoryImpl(UserCrudRepository userCrudRepository, RoleCrudRepository roleCrudRepository) {
+    public UserRepositoryImpl(UserJpaRepository userCrudRepository, RoleJpaRepository roleCrudRepository) {
         this.userCrudRepository = userCrudRepository;
         this.roleCrudRepository = roleCrudRepository;
     }

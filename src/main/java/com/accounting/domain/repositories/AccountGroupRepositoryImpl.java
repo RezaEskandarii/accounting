@@ -2,7 +2,7 @@ package com.accounting.domain.repositories;
 
 import com.accounting.domain.entitites.AccountGroup;
 import com.accounting.domain.interfaces.AccountGroupRepository;
-import com.accounting.jparepository.AccountGroupCrudRepository;
+import com.accounting.jparepository.AccountGroupJpaRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
@@ -15,9 +15,9 @@ import java.util.Optional;
 public class AccountGroupRepositoryImpl implements AccountGroupRepository {
 
 
-    private final AccountGroupCrudRepository accountGroupRepository;
+    private final AccountGroupJpaRepository accountGroupRepository;
 
-    public AccountGroupRepositoryImpl(AccountGroupCrudRepository accountGroupRepository) {
+    public AccountGroupRepositoryImpl(AccountGroupJpaRepository accountGroupRepository) {
         this.accountGroupRepository = accountGroupRepository;
     }
 

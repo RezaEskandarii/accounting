@@ -2,7 +2,7 @@ package com.accounting.application.services;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
 import com.accounting.contract.interfaces.ReportAppService;
-import com.accounting.crudrepositories.interfaces.ReportRepository;
+import com.accounting.contract.interfaces.ReportRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

@@ -2,7 +2,7 @@ package com.accounting.domain.repositories;
 
 import com.accounting.domain.entitites.Journal;
 import com.accounting.domain.interfaces.JournalRepository;
-import com.accounting.jparepository.JournalCrudRepository;
+import com.accounting.jparepository.JournalJpaRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 public class JournalRepositoryImpl implements JournalRepository {
 
 
-    private final JournalCrudRepository journalRepository;
+    private final JournalJpaRepository journalRepository;
 
-    public JournalRepositoryImpl(JournalCrudRepository journalRepository) {
+    public JournalRepositoryImpl(JournalJpaRepository journalRepository) {
         this.journalRepository = journalRepository;
     }
 

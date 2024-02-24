@@ -40,7 +40,8 @@ public class AccountAppServiceImpl implements AccountAppService {
 
     @Override
     public AccountDTO find(Long id) {
-        var result = accountService.find(id).orElseThrow(() -> new ItemNotFoundException(id));
+        var result = accountService.find(id)
+                .orElseThrow(() -> new ItemNotFoundException(id));
 
         return accountMapper.mapToAccountDTO(result);
     }

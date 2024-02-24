@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.transaction.Transactional;
 
 @Transactional
-public interface BookCrudRepository extends JpaRepository<Book, Long> {
+public interface BookJpaRepository extends JpaRepository<Book, Long> {
 }

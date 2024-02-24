@@ -2,8 +2,8 @@ package com.accounting.domain.repositories;
 
 import com.accounting.domain.entitites.Book;
 import com.accounting.domain.interfaces.BookRepository;
-import com.accounting.jparepository.BookCrudRepository;
-import com.accounting.jparepository.TransactionCrudRepository;
+import com.accounting.jparepository.BookJpaRepository;
+import com.accounting.jparepository.TransactionJpaRepository;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.ConflictException;
 import com.accounting.shared.filters.PaginationInput;
@@ -17,11 +17,11 @@ import java.util.Optional;
 public class BookRepositoryImpl implements BookRepository {
 
 
-    private final BookCrudRepository bookRepository;
+    private final BookJpaRepository bookRepository;
 
-    private final TransactionCrudRepository transactionRepository;
+    private final TransactionJpaRepository transactionRepository;
 
-    public BookRepositoryImpl(BookCrudRepository bookRepository, TransactionCrudRepository transactionRepository) {
+    public BookRepositoryImpl(BookJpaRepository bookRepository, TransactionJpaRepository transactionRepository) {
         this.bookRepository = bookRepository;
         this.transactionRepository = transactionRepository;
     }

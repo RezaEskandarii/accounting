@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface TenantCrudRepository extends JpaRepository<Tenant, Long> {
+public interface TenantJpaRepository extends JpaRepository<Tenant, Long> {
 }

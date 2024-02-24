@@ -4,7 +4,7 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
-import com.accounting.jparepository.ReportRepository;
+import com.accounting.contract.interfaces.ReportRepository;
 import com.accounting.shared.filters.PaginationInput;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,13 +1,14 @@
 package com.accounting.jparepository;
 
-import com.accounting.domain.entitites.Journal;
+import com.accounting.domain.entitites.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-@Transactional
 @Repository
-public interface JournalCrudRepository extends JpaRepository<Journal, Long> {
+@Transactional
+public interface TransactionJpaRepository extends JpaRepository<Transaction, Long> {
 
+    int countByBook(Long bookId);
 }

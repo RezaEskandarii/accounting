@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface UserCrudRepository extends CrudRepository<User, Long> {
+public interface UserJpaRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 

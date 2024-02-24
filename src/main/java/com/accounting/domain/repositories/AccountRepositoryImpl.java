@@ -2,7 +2,7 @@ package com.accounting.domain.repositories;
 
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.interfaces.AccountRepository;
-import com.accounting.jparepository.AccountCrudRepository;
+import com.accounting.jparepository.AccountJpaRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
 import org.springframework.data.domain.Page;
@@ -14,9 +14,9 @@ import java.util.Optional;
 public class AccountRepositoryImpl implements AccountRepository {
 
 
-    private final AccountCrudRepository accountRepository;
+    private final AccountJpaRepository accountRepository;
 
-    public AccountRepositoryImpl(AccountCrudRepository accountRepository) {
+    public AccountRepositoryImpl(AccountJpaRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 

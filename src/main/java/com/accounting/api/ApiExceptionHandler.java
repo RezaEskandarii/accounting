@@ -1,6 +1,7 @@
-package com.accounting.shared.exceptions;
+package com.accounting.api;
 
 import com.accounting.commons.ApiResponse;
+import com.accounting.shared.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.MessageSource;
