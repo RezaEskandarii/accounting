@@ -3,7 +3,7 @@ package com.accounting.api;
 import com.accounting.commons.ApiResponse;
 import com.accounting.shared.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -24,119 +24,57 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-@EnableAutoConfiguration
 @Slf4j
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     private final MessageSource messageSource;
 
+    @Autowired
     public ApiExceptionHandler(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
 
-    @ExceptionHandler(value = {ApiRequestException.class})
+    private ResponseEntity<Object> handleException(Exception e, HttpStatus status, String message) {
+        var exception = new ApiResponse(
+                message,
+                status,
+                ZonedDateTime.now(ZoneId.of("Z")),
+                null
+        );
+
+        return new ResponseEntity<>(exception, status);
+    }
+
+    @ExceptionHandler(value = {ApiRequestException.class, ItemNotFoundException.class, SQLException.class, DataIntegrityViolationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Object> handleApiRequestException(ApiRequestException e) {
-
-        var exception = new ApiResponse(
-                e.getMessage(),
-                HttpStatus.BAD_REQUEST,
-                ZonedDateTime.now(ZoneId.of("Z")),
-                null
-        );
-
-        return new ResponseEntity<>(exception, HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
+    public ResponseEntity<Object> handleApiRequestException(Exception e) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        if (e instanceof ItemNotFoundException) {
+            status = HttpStatus.NOT_FOUND;
+        } else if (e instanceof SQLException || e instanceof DataIntegrityViolationException) {
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return handleException(e, status, e.getMessage());
     }
 
-    @ExceptionHandler(value = {ItemNotFoundException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<Object> handleNotFoundException(ItemNotFoundException e) {
-
-        var exception = new ApiResponse(
-                e.getMessage(),
-                HttpStatus.NOT_FOUND,
-                ZonedDateTime.now(ZoneId.of("Z")),
-                null
-        );
-
-        return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(value = {DuplicatedItemException.class, InvalidDataException.class, ConflictException.class})
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ResponseEntity<Object> handleConflictException(ConflictException e) {
+        var errorMessages = e.getErrors() != null ? e.getErrors().stream()
+                .map(x -> this.messageSource.getMessage(x, null, Locale.ENGLISH))
+                .collect(Collectors.toList()) : null;
+        return handleException(e, HttpStatus.CONFLICT, errorMessages != null ? String.join(", ", errorMessages) : e.getMessage());
     }
-
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
-        String errorMessage = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
-        List<String> validationList = ex.getBindingResult().getFieldErrors().stream().map(fieldError -> fieldError.getDefaultMessage()).collect(Collectors.toList());
-        var resp = new ApiResponse().setMessage(validationList);
+        List<String> validationList = ex.getBindingResult().getFieldErrors().stream()
+                .map(fieldError -> fieldError.getDefaultMessage())
+                .collect(Collectors.toList());
+        var resp = new ApiResponse(validationList);
 
         return new ResponseEntity<>(resp, status);
     }
-
-    @ExceptionHandler(value = SQLException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<Object> handleSqlException(SQLException e) {
-
-        log.error(e.getMessage());
-        var resp = new ApiResponse().setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-
-        return new ResponseEntity<>(resp, resp.statusCode);
-    }
-
-
-    @ExceptionHandler(value = DataIntegrityViolationException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-
-        log.error(e.getMessage());
-        var resp = new ApiResponse().setStatusCode(HttpStatus.CONFLICT);
-
-        return new ResponseEntity<>(resp, resp.statusCode);
-    }
-
-
-    @ExceptionHandler(value = DuplicatedItemException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<Object> handleDuplicatedItemException(DuplicatedItemException e) {
-
-        var resp = new ApiResponse().setStatusCode(HttpStatus.CONFLICT);
-
-        if (e != null && e.getErrors() != null) {
-            resp.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
-        }
-
-        return new ResponseEntity<>(resp, resp.statusCode);
-    }
-
-    @ExceptionHandler(value = InvalidDataException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<Object> handleInvalidDataException(InvalidDataException e) {
-
-        var resp = badRequestResponse();
-        if (e != null && e.getErrors() != null) {
-            resp.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
-        }
-
-        return new ResponseEntity<>(resp, resp.statusCode);
-    }
-
-
-    @ExceptionHandler(value = ConflictException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<Object> handleConflictException(ConflictException e) {
-
-        var resp = badRequestResponse();
-        if (e != null && e.getErrors() != null) {
-            resp.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
-        }
-
-        return new ResponseEntity<>(resp, resp.statusCode);
-    }
-
-
-    private ApiResponse badRequestResponse() {
-        return new ApiResponse().setStatusCode(HttpStatus.BAD_REQUEST);
-    }
-
 }
