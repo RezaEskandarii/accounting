@@ -1,4 +1,4 @@
-package com.accounting.crudrepositories.interfaces;
+package com.accounting.jparepository;
 
 import com.accounting.domain.entitites.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +10,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface TransactionCrudRepository extends JpaRepository<Transaction, Long> {
 
-    public int countByBook(Long bookId);
+    int countByBook(Long bookId);
 }

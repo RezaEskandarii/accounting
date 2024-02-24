@@ -2,7 +2,6 @@ package com.accounting.shared.exceptions;
 
 import com.accounting.commons.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.MessageSource;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -28,8 +27,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public ApiExceptionHandler(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @ExceptionHandler(value = {ApiRequestException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -66,9 +68,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
         String errorMessage = ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
         List<String> validationList = ex.getBindingResult().getFieldErrors().stream().map(fieldError -> fieldError.getDefaultMessage()).collect(Collectors.toList());
-        ApiResponse apiResponse = new ApiResponse().setMessage(validationList);
+        var resp = new ApiResponse().setMessage(validationList);
 
-        return new ResponseEntity<>(apiResponse, status);
+        return new ResponseEntity<>(resp, status);
     }
 
     @ExceptionHandler(value = SQLException.class)
@@ -76,9 +78,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleSqlException(SQLException e) {
 
         log.error(e.getMessage());
-        var apiResponse = new ApiResponse().setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+        var resp = new ApiResponse().setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
 
-        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+        return new ResponseEntity<>(resp, resp.statusCode);
     }
 
 
@@ -87,9 +89,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
 
         log.error(e.getMessage());
-        var apiResponse = new ApiResponse().setStatusCode(HttpStatus.CONFLICT);
+        var resp = new ApiResponse().setStatusCode(HttpStatus.CONFLICT);
 
-        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+        return new ResponseEntity<>(resp, resp.statusCode);
     }
 
 
@@ -97,42 +99,43 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<Object> handleDuplicatedItemException(DuplicatedItemException e) {
 
-        var apiResponse = new ApiResponse().setStatusCode(HttpStatus.CONFLICT);
+        var resp = new ApiResponse().setStatusCode(HttpStatus.CONFLICT);
 
         if (e != null && e.getErrors() != null) {
-            apiResponse.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
+            resp.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
         }
 
-        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+        return new ResponseEntity<>(resp, resp.statusCode);
     }
 
     @ExceptionHandler(value = InvalidDataException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<Object> handleInvalidDataException(InvalidDataException e) {
 
-        var apiResponse = new ApiResponse().setStatusCode(HttpStatus.BAD_REQUEST);
-
+        var resp = badRequestResponse();
         if (e != null && e.getErrors() != null) {
-            apiResponse.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
+            resp.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
         }
 
-        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+        return new ResponseEntity<>(resp, resp.statusCode);
     }
-
 
 
     @ExceptionHandler(value = ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<Object> handleConflictException(ConflictException e) {
 
-        var apiResponse = new ApiResponse().setStatusCode(HttpStatus.BAD_REQUEST);
-
+        var resp = badRequestResponse();
         if (e != null && e.getErrors() != null) {
-            apiResponse.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
+            resp.message = e.getErrors().stream().map(x -> x = this.messageSource.getMessage(x, null, Locale.ENGLISH));
         }
 
-        return new ResponseEntity<>(apiResponse, apiResponse.statusCode);
+        return new ResponseEntity<>(resp, resp.statusCode);
     }
 
+
+    private ApiResponse badRequestResponse() {
+        return new ApiResponse().setStatusCode(HttpStatus.BAD_REQUEST);
+    }
 
 }

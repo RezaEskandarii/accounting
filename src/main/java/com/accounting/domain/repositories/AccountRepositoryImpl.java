@@ -1,8 +1,8 @@
 package com.accounting.domain.repositories;
 
-import com.accounting.crudrepositories.interfaces.AccountCrudRepository;
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.interfaces.AccountRepository;
+import com.accounting.jparepository.AccountCrudRepository;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
 import org.springframework.data.domain.Page;

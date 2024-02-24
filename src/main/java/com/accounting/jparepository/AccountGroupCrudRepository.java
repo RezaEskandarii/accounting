@@ -1,4 +1,4 @@
-package com.accounting.crudrepositories.interfaces;
+package com.accounting.jparepository;
 
 import com.accounting.domain.entitites.AccountGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface AccountGroupCrudRepository extends JpaRepository<AccountGroup, Long> {
-    public AccountGroup findByName(String name);
-    public AccountGroup findByCode(String code);
+    AccountGroup findByName(String name);
+
+    AccountGroup findByCode(String code);
 }

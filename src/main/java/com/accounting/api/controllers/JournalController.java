@@ -4,7 +4,7 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.JournalAppService;
-import com.accounting.crudrepositories.interfaces.ReportRepository;
+import com.accounting.jparepository.ReportRepository;
 import com.accounting.shared.filters.PaginationInput;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,14 +27,14 @@ public class JournalController extends BaseController {
 
     @PostMapping
     public ResponseEntity<ApiResponse> create(@RequestBody JournalDto dto) {
-        var data = journalAppService.create(dto);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = journalAppService.create(dto);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
-        var data = journalAppService.find(id);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = journalAppService.find(id);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
     @DeleteMapping(path = "/{id}")
@@ -45,14 +45,14 @@ public class JournalController extends BaseController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> update(@Valid @RequestBody JournalDto dto, @PathVariable Long id) {
-        var data = journalAppService.update(id, dto);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = journalAppService.update(id, dto);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
-        var data = journalAppService.findAll(paginationInput);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = journalAppService.findAll(paginationInput);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
 

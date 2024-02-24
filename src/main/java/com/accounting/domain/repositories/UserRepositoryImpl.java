@@ -1,10 +1,10 @@
 package com.accounting.domain.repositories;
 
-import com.accounting.crudrepositories.interfaces.RoleCrudRepository;
-import com.accounting.crudrepositories.interfaces.UserCrudRepository;
 import com.accounting.domain.entitites.Role;
 import com.accounting.domain.entitites.User;
 import com.accounting.domain.interfaces.UserRepository;
+import com.accounting.jparepository.RoleCrudRepository;
+import com.accounting.jparepository.UserCrudRepository;
 import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 

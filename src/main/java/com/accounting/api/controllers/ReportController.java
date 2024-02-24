@@ -30,8 +30,8 @@ public class ReportController extends BaseController {
             @RequestParam(required = false) LocalDate toDate
     ) {
 
-        var data = reportAppService.getTrialBalanceReport(accountId, journalId, fromDate, toDate);
-        var resp = new ApiResponse(data, HttpStatus.OK);
-        return ResponseEntity.ok(resp);
+        var trialBalanceReport = reportAppService.getTrialBalanceReport(accountId, journalId, fromDate, toDate);
+        var apiResponse = new ApiResponse(trialBalanceReport, HttpStatus.OK);
+        return ResponseEntity.ok(apiResponse);
     }
 }

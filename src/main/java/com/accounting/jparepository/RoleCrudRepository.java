@@ -1,4 +1,4 @@
-package com.accounting.crudrepositories.interfaces;
+package com.accounting.jparepository;
 
 import com.accounting.domain.entitites.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface RoleCrudRepository extends JpaRepository<Role, Long> {
-    public Optional<Role> findByName(String roleName);
+    Optional<Role> findByName(String roleName);
 }

@@ -1,4 +1,4 @@
-package com.accounting.crudrepositories.interfaces;
+package com.accounting.jparepository;
 
 import com.accounting.domain.entitites.Journal;
 import org.springframework.data.jpa.repository.JpaRepository;

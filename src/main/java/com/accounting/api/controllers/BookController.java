@@ -23,15 +23,15 @@ public class BookController extends BaseController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> find(@PathVariable Long id) {
-        var resp = new ApiResponse(bookAppService.find(id));
-        return ResponseEntity.ok(resp);
+        var result = new ApiResponse(bookAppService.find(id));
+        return ResponseEntity.ok(result);
     }
 
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody CreateUpdateBookDto dto, Locale locale) {
-        var resp = new ApiResponse(bookAppService.create(dto));
-        return ResponseEntity.ok(resp);
+        var result = new ApiResponse(bookAppService.create(dto));
+        return ResponseEntity.ok(result);
     }
 
 
@@ -43,13 +43,13 @@ public class BookController extends BaseController {
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> update(@Valid @RequestBody CreateUpdateBookDto dto, @PathVariable Long id, Locale locale) {
-        var data = bookAppService.update(id, dto);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = bookAppService.update(id, dto);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
-        var data = bookAppService.findAll(paginationInput);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = bookAppService.findAll(paginationInput);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 }

@@ -35,29 +35,29 @@ public class AccountController {
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountCreateDto dto, Locale locale) {
 
-        var data = accountService.create(dto);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = accountService.create(dto);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> findById(@PathVariable Long id) {
-        var resp = new ApiResponse(accountService.find(id));
-        return ResponseEntity.ok(resp);
+        var result = new ApiResponse(accountService.find(id));
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
 
-        var resp = new ApiResponse(accountService.findAll(paginationInput), HttpStatus.OK);
-        return ResponseEntity.ok(resp);
+        var result = new ApiResponse(accountService.findAll(paginationInput), HttpStatus.OK);
+        return ResponseEntity.ok(result);
     }
 
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> update(@RequestBody AccountUpdateDto accountDTO,
                                               @PathVariable Long id) {
-        var data = accountService.update(id, accountDTO);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = accountService.update(id, accountDTO);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
 

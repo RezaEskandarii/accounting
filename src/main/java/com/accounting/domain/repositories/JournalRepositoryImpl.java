@@ -1,8 +1,8 @@
 package com.accounting.domain.repositories;
 
-import com.accounting.crudrepositories.interfaces.JournalCrudRepository;
 import com.accounting.domain.entitites.Journal;
 import com.accounting.domain.interfaces.JournalRepository;
+import com.accounting.jparepository.JournalCrudRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;

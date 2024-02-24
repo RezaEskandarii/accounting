@@ -29,8 +29,8 @@ public class AccountGroupController {
 
     @PostMapping(path = "")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody AccountGroupDto dto) {
-        var data = accountGroupAppService.create(dto);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = accountGroupAppService.create(dto);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
     @GetMapping("/{id}")
@@ -44,16 +44,16 @@ public class AccountGroupController {
     @GetMapping(path = "")
     public ResponseEntity<ApiResponse> findAll(PaginationInput paginationInput) {
 
-        var resp = new ApiResponse(accountGroupAppService.findAll(paginationInput), HttpStatus.OK);
-        return ResponseEntity.ok(resp);
+        var result = new ApiResponse(accountGroupAppService.findAll(paginationInput), HttpStatus.OK);
+        return ResponseEntity.ok(result);
     }
 
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<ApiResponse> update(@RequestBody AccountGroupDto accountGroupDto,
                                               @PathVariable Long id) {
-        var data = accountGroupAppService.update(id, accountGroupDto);
-        return ResponseEntity.ok(new ApiResponse(data));
+        var result = accountGroupAppService.update(id, accountGroupDto);
+        return ResponseEntity.ok(new ApiResponse(result));
     }
 
 

@@ -1,4 +1,4 @@
-package com.accounting.crudrepositories.interfaces;
+package com.accounting.jparepository;
 
 import com.accounting.domain.entitites.Tenant;
 import org.springframework.data.jpa.repository.JpaRepository;
