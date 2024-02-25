@@ -1,7 +1,8 @@
 package com.accounting.shared.mapper;
 
+import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountDTO;
-import com.accounting.contract.dto.accounts.GetAccountDTO;
+import com.accounting.contract.dto.accounts.AccountUpdateDto;
 import com.accounting.domain.entitites.Account;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -13,17 +14,15 @@ public class AccountMapper extends BaseMapper {
         modelMapper = new ModelMapper();
     }
 
-    public Account mapToAccount(Object model) {
+    public Account mapToAccount(AccountCreateDto model) {
         return modelMapper.map(model, Account.class);
     }
 
-    public GetAccountDTO mapToGetAccountDTO(Object model) {
-
-        return modelMapper.map(model, GetAccountDTO.class);
+    public Account mapToAccount(AccountUpdateDto model) {
+        return modelMapper.map(model, Account.class);
     }
 
-    public AccountDTO mapToAccountDTO(Object model) {
-
+    public AccountDTO mapToAccountDTO(Account model) {
         return modelMapper.map(model, AccountDTO.class);
     }
 

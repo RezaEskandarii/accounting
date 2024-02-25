@@ -10,11 +10,11 @@ public class JournalMapper extends BaseMapper {
         super();
     }
 
-    public Journal mapToJournal(Object model) {
+    public Journal mapToJournal(JournalDto model) {
         return modelMapper.map(model, Journal.class);
     }
 
-    public JournalDto mapToJournalDTO(Object model) {
+    public JournalDto mapToJournalDTO(Journal model) {
         return modelMapper.map(model, JournalDto.class);
     }
 

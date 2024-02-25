@@ -12,19 +12,15 @@ public class AccountGroupMapper extends BaseMapper {
         super();
     }
 
-    public AccountGroup mapToAccountGroup(Object model) {
+    public AccountGroup mapToAccountGroup(AccountGroupDto model) {
         return modelMapper.map(model, AccountGroup.class);
     }
 
-    public GetAccountGroupDto mapToGetAccountGroup(Object model) {
+    public GetAccountGroupDto mapToGetAccountGroup(AccountGroup model) {
         return modelMapper.map(model, GetAccountGroupDto.class);
     }
 
-    public AccountGroup mapTotAccountGroup(Object model) {
-        return modelMapper.map(model, AccountGroup.class);
-    }
-
-    public AccountGroupDto mapToAccountGroupDto(Object model) {
+    public AccountGroupDto mapToAccountGroupDto(AccountGroup model) {
         return modelMapper.map(model, AccountGroupDto.class);
     }
 }
