@@ -46,6 +46,11 @@ public class AccountGroupRepositoryImpl implements AccountGroupRepository {
     }
 
     @Override
+    public Optional<AccountGroup> findByIdAndCode(Long id, String code) {
+        return Optional.of(accountGroupRepository.findByIdAndCode(id, code));
+    }
+
+    @Override
     public void delete(Long id) {
         accountGroupRepository.deleteById(id);
     }

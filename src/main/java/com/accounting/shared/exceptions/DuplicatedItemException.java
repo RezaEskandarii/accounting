@@ -12,4 +12,5 @@ public class DuplicatedItemException extends RuntimeException {
     public DuplicatedItemException(List<String> errors) {
         this.errors = errors;
     }
+
 }

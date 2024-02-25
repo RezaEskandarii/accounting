@@ -12,7 +12,7 @@
 	<artifactId>accounting</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>accounting</name>
-	<description>multi tenant accounting</description>
+	<description>accounting</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>

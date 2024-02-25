@@ -50,8 +50,7 @@ public class AccountGroupController {
 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ApiResponse> update(@RequestBody AccountGroupDto accountGroupDto,
-                                              @PathVariable Long id) {
+    public ResponseEntity<ApiResponse> update(@RequestBody AccountGroupDto accountGroupDto, @PathVariable Long id) {
         var result = accountGroupAppService.update(id, accountGroupDto);
         return ResponseEntity.ok(new ApiResponse(result));
     }

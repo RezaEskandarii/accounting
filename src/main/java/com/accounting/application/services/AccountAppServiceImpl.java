@@ -54,6 +54,6 @@ public class AccountAppServiceImpl implements AccountAppService {
     @Override
     public Page<AccountDTO> findAll(PaginationInput input) {
         var accounts = accountService.findAll(input);
-        return accounts.map(b -> accountMapper.mapToAccountDTO(b));
+        return accounts.map(accountMapper::mapToAccountDTO);
     }
 }

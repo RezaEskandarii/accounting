@@ -12,4 +12,6 @@ public interface AccountGroupJpaRepository extends JpaRepository<AccountGroup, L
     AccountGroup findByName(String name);
 
     AccountGroup findByCode(String code);
+
+    AccountGroup findByIdAndCode(Long id, String code);
 }

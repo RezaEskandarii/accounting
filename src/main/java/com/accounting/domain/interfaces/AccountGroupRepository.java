@@ -15,6 +15,8 @@ public interface AccountGroupRepository {
 
     Optional<AccountGroup> findByCode(String code);
 
+    Optional<AccountGroup> findByIdAndCode(Long id, String code);
+
     void delete(Long id);
 
     Page<AccountGroup> findAll(PaginationInput input);

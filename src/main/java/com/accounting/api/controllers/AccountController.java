@@ -54,8 +54,7 @@ public class AccountController {
 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ApiResponse> update(@RequestBody AccountUpdateDto accountDTO,
-                                              @PathVariable Long id) {
+    public ResponseEntity<ApiResponse> update(@RequestBody AccountUpdateDto accountDTO, @PathVariable Long id) {
         var result = accountService.update(id, accountDTO);
         return ResponseEntity.ok(new ApiResponse(result));
     }
