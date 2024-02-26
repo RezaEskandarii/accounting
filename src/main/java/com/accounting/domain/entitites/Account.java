@@ -1,5 +1,6 @@
 package com.accounting.domain.entitites;
 
+import com.accounting.shared.enums.AccountType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,4 +37,6 @@ public class Account extends BaseEntity {
     @JoinColumn(name = "account_group_id")
     private AccountGroup accountGroup;
 
+    @Column(name = "account_type")
+    private AccountType accountType;
 }
