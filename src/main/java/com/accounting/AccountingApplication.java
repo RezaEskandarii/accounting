@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @Slf4j
-@OpenAPIDefinition(info = @Info(title = "MultiTenant Accounting API", version = "2.0", description = "Accounting API Information"))
+@OpenAPIDefinition(info = @Info(title = "Accounting API", version = "2.0", description = "Accounting API Information"))
 public class AccountingApplication {
 
     public static void main(String[] args) {

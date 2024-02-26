@@ -3,8 +3,10 @@ package com.accounting.api;
 import com.accounting.commons.ApiResponse;
 import com.accounting.shared.exceptions.*;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -45,33 +47,37 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(exception, status);
     }
 
-    @ExceptionHandler(value = {ApiRequestException.class, ItemNotFoundException.class, SQLException.class, DataIntegrityViolationException.class})
+    @ExceptionHandler(value = {ApiRequestException.class, ItemNotFoundException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleApiRequestException(Exception e) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-        if (e instanceof ItemNotFoundException) {
-            status = HttpStatus.NOT_FOUND;
-        } else if (e instanceof SQLException || e instanceof DataIntegrityViolationException) {
-            status = HttpStatus.INTERNAL_SERVER_ERROR;
-        }
-        return handleException(e, status, e.getMessage());
+        return handleException(e, HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
+    @ExceptionHandler(value = {SQLException.class, DataIntegrityViolationException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Object> handleDatabaseException(Exception e) {
+        return handleException(e, HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
     }
 
     @ExceptionHandler(value = {DuplicatedItemException.class, InvalidDataException.class, ConflictException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ResponseEntity<Object> handleConflictException(ConflictException e) {
-        var errorMessages = e.getErrors() != null ? e.getErrors().stream()
-                .map(x -> this.messageSource.getMessage(x, null, Locale.ENGLISH))
-                .collect(Collectors.toList()) : null;
-        return handleException(e, HttpStatus.CONFLICT, errorMessages != null ? String.join(", ", errorMessages) : e.getMessage());
+    public ResponseEntity<Object> handleConflictException(Exception e) {
+        if (e instanceof ConflictException || e instanceof DuplicatedItemException) {
+            assert e instanceof DuplicatedItemException;
+            List<String> errorMessages = ((DuplicatedItemException) e).getErrors() != null ? ((DuplicatedItemException) e).getErrors().stream()
+                    .map(x -> this.messageSource.getMessage(x, null, Locale.ENGLISH))
+                    .collect(Collectors.toList()) : null;
+            return handleException(e, HttpStatus.CONFLICT, errorMessages != null ? String.join(", ", errorMessages) : e.getMessage());
+        }
+        return null;
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected @NotNull ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                           HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> validationList = ex.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> fieldError.getDefaultMessage())
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
         var resp = new ApiResponse(validationList);
 

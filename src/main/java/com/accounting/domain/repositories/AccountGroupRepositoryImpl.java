@@ -36,7 +36,6 @@ public class AccountGroupRepositoryImpl implements AccountGroupRepository {
     @Override
     public Optional<AccountGroup> find(Long id) {
         var result = accountGroupRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
-
         return Optional.of(result);
     }
 

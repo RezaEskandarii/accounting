@@ -26,6 +26,8 @@ public class AccountGroupAppServiceImpl implements AccountGroupAppService {
 
     @Override
     public AccountGroupDto create(AccountGroupDto groupDto) {
+        throwIfAccountGroupCodeDuplicated(groupDto.getCode());
+
         var ac = accountGroupMapper.mapToAccountGroup(groupDto);
         var result = accountGroupService.create(ac);
         return accountGroupMapper.mapToAccountGroupDto(result);
@@ -45,6 +47,7 @@ public class AccountGroupAppServiceImpl implements AccountGroupAppService {
 
     @Override
     public AccountGroupDto update(long id, AccountGroupDto groupDto) {
+        throwIfAccountGroupCodeDuplicated(id, groupDto.getCode());
         var ac = accountGroupMapper.mapToAccountGroup(groupDto);
         return accountGroupMapper.mapToAccountGroupDto(accountGroupService.update(id, ac));
     }
@@ -68,7 +71,7 @@ public class AccountGroupAppServiceImpl implements AccountGroupAppService {
     }
 
     private void throwIfAccountGroupCodeDuplicated(Long id, String code) {
-        var ac = accountGroupService.findByCode(code);
+        var ac = accountGroupService.findByIdAndCode(id, code);
         if (ac.isPresent()) {
             throw new DuplicatedItemException(duplicatedCodeError(code));
         }
