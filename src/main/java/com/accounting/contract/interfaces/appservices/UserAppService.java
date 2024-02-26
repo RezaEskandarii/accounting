@@ -1,4 +1,4 @@
-package com.accounting.contract.interfaces;
+package com.accounting.contract.interfaces.appservices;
 
 import com.accounting.contract.dto.User.UserCreateDto;
 import com.accounting.contract.dto.User.UserDto;

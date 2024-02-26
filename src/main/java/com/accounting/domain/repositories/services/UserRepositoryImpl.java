@@ -1,4 +1,4 @@
-package com.accounting.domain.repositories;
+package com.accounting.domain.repositories.services;
 
 import com.accounting.domain.entitites.Role;
 import com.accounting.domain.entitites.User;

@@ -3,7 +3,7 @@ package com.accounting.application.services;
 import com.accounting.contract.dto.User.UserCreateDto;
 import com.accounting.contract.dto.User.UserDto;
 import com.accounting.contract.dto.User.UserUpdateDto;
-import com.accounting.contract.interfaces.UserAppService;
+import com.accounting.contract.interfaces.appservices.UserAppService;
 import com.accounting.domain.interfaces.UserRepository;
 import com.accounting.shared.mapper.UserMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;

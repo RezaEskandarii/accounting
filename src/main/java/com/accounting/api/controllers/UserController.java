@@ -5,7 +5,7 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.User.UserCreateDto;
 import com.accounting.contract.dto.User.UserUpdateDto;
-import com.accounting.contract.interfaces.UserAppService;
+import com.accounting.contract.interfaces.appservices.UserAppService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

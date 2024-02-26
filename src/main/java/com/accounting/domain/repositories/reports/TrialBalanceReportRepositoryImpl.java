@@ -1,7 +1,7 @@
-package com.accounting.domain.repositories;
+package com.accounting.domain.repositories.reports;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
-import com.accounting.contract.interfaces.ReportRepository;
+import com.accounting.contract.interfaces.reports.TrialBalanceReportService;
 import com.accounting.domain.entitites.Transaction;
 import org.springframework.stereotype.Component;
 
@@ -13,17 +13,16 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Component
-public class ReportRepositoryImpl implements ReportRepository {
-
+public class TrialBalanceReportRepositoryImpl implements TrialBalanceReportService {
 
     private final EntityManagerFactory factory;
 
-    public ReportRepositoryImpl(EntityManagerFactory factory) {
+    public TrialBalanceReportRepositoryImpl(EntityManagerFactory factory) {
         this.factory = factory;
     }
 
     @Override
-    public List<TrialBalanceReportDto> getTrialBalanceReport(Long accountId, Long journalId, LocalDate fromDate, LocalDate toDate) {
+    public List<TrialBalanceReportDto> getReport(Long accountId, Long journalId, LocalDate fromDate, LocalDate toDate) {
 
         var entityManager = factory.createEntityManager();
 

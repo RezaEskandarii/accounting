@@ -4,7 +4,7 @@ import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
-import com.accounting.contract.interfaces.AccountAppService;
+import com.accounting.contract.interfaces.appservices.AccountAppService;
 import com.accounting.shared.filters.PaginationInput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;

@@ -2,7 +2,7 @@ package com.accounting.application.services;
 
 import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
-import com.accounting.contract.interfaces.BookAppService;
+import com.accounting.contract.interfaces.appservices.BookAppService;
 import com.accounting.domain.interfaces.BookRepository;
 import com.accounting.shared.Constants;
 import com.accounting.shared.errors.Errors;

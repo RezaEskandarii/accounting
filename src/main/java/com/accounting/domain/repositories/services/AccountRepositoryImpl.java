@@ -1,4 +1,4 @@
-package com.accounting.domain.repositories;
+package com.accounting.domain.repositories.services;
 
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.interfaces.AccountRepository;

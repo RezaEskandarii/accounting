@@ -3,8 +3,8 @@ package com.accounting.api.controllers;
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.journal.JournalDto;
-import com.accounting.contract.interfaces.JournalAppService;
-import com.accounting.contract.interfaces.ReportRepository;
+import com.accounting.contract.interfaces.appservices.JournalAppService;
+import com.accounting.contract.interfaces.reports.TrialBalanceReportService;
 import com.accounting.shared.filters.PaginationInput;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +18,9 @@ public class JournalController extends BaseController {
 
     private final JournalAppService journalAppService;
 
-    private final ReportRepository reportRepository;
+    private final TrialBalanceReportService reportRepository;
 
-    public JournalController(JournalAppService journalAppService, ReportRepository reportRepository) {
+    public JournalController(JournalAppService journalAppService, TrialBalanceReportService reportRepository) {
         this.journalAppService = journalAppService;
         this.reportRepository = reportRepository;
     }

@@ -3,7 +3,7 @@ package com.accounting.api.controllers;
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
-import com.accounting.contract.interfaces.BookAppService;
+import com.accounting.contract.interfaces.appservices.BookAppService;
 import com.accounting.shared.filters.PaginationInput;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

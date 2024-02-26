@@ -3,7 +3,7 @@ package com.accounting.api.controllers;
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
-import com.accounting.contract.interfaces.AccountGroupAppService;
+import com.accounting.contract.interfaces.appservices.AccountGroupAppService;
 import com.accounting.shared.filters.PaginationInput;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;

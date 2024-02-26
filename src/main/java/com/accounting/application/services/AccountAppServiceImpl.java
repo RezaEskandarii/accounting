@@ -3,7 +3,7 @@ package com.accounting.application.services;
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountDTO;
 import com.accounting.contract.dto.accounts.AccountUpdateDto;
-import com.accounting.contract.interfaces.AccountAppService;
+import com.accounting.contract.interfaces.appservices.AccountAppService;
 import com.accounting.domain.interfaces.AccountRepository;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.filters.PaginationInput;

@@ -1,4 +1,4 @@
-package com.accounting.contract.interfaces;
+package com.accounting.contract.interfaces.appservices;
 
 import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
