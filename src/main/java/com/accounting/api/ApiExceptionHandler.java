@@ -21,8 +21,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
@@ -64,9 +64,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleConflictException(Exception e) {
         if (e instanceof ConflictException || e instanceof DuplicatedItemException) {
             assert e instanceof DuplicatedItemException;
-            List<String> errorMessages = ((DuplicatedItemException) e).getErrors() != null ? ((DuplicatedItemException) e).getErrors().stream()
-                    .map(x -> this.messageSource.getMessage(x, null, Locale.ENGLISH))
-                    .collect(Collectors.toList()) : null;
+            List<String> errorMessages = ((DuplicatedItemException) e).getErrors() != null ?
+                    ((DuplicatedItemException) e).getErrors()
+                     : new ArrayList<>();
             return handleException(e, HttpStatus.CONFLICT, errorMessages != null ? String.join(", ", errorMessages) : e.getMessage());
         }
         return null;
