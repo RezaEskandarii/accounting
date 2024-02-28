@@ -2,7 +2,7 @@ package com.accounting.api.controllers;
 
 import com.accounting.commons.ApiResponse;
 import com.accounting.config.APIConfig;
-import com.accounting.contract.interfaces.appservices.ReportAppService;
+import com.accounting.contract.interfaces.appservices.TrialBalanceReportAppService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +16,9 @@ import java.time.LocalDate;
 @RequestMapping(value = APIConfig.REPORT_CONTROLLER)
 public class ReportController extends BaseController {
 
-    private final ReportAppService reportAppService;
+    private final TrialBalanceReportAppService reportAppService;
 
-    public ReportController(ReportAppService reportAppService) {
+    public ReportController(TrialBalanceReportAppService reportAppService) {
         this.reportAppService = reportAppService;
     }
 

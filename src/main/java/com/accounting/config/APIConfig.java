@@ -1,6 +1,6 @@
 package com.accounting.config;
 
-public class APIConfig {
+public abstract class APIConfig {
     public static final String API_VERSION = "/api/v1";
 
     public static final String ACCOUNTS_CONTROLLER = API_VERSION + "/accounts";
