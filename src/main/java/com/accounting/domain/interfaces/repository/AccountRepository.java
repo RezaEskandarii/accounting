@@ -1,4 +1,4 @@
-package com.accounting.domain.interfaces;
+package com.accounting.domain.interfaces.repository;
 
 import com.accounting.domain.entitites.Account;
 import com.accounting.shared.filters.PaginationInput;

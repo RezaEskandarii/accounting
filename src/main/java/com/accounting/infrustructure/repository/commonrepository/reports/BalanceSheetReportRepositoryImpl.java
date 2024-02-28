@@ -1,10 +1,10 @@
-package com.accounting.domain.repositories.reports;
+package com.accounting.infrustructure.repository.commonrepository.reports;
 
-import com.accounting.contract.interfaces.reports.BalanceSheetService;
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.entitites.Transaction;
-import com.accounting.jparepository.AccountJpaRepository;
-import com.accounting.jparepository.TransactionJpaRepository;
+import com.accounting.domain.interfaces.repository.BalanceSheetReportRepository;
+import com.accounting.infrustructure.repository.jparepository.AccountJpaRepository;
+import com.accounting.infrustructure.repository.jparepository.TransactionJpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -12,8 +12,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Component
-public record BalanceSheetServiceImpl(AccountJpaRepository accountJpaRepository,
-                                      TransactionJpaRepository transactionJpaRepository) implements BalanceSheetService {
+public record BalanceSheetReportRepositoryImpl(AccountJpaRepository accountJpaRepository,
+                                               TransactionJpaRepository transactionJpaRepository) implements BalanceSheetReportRepository {
 
     @Override
     public Map<String, BigDecimal> generateBalanceSheet() {

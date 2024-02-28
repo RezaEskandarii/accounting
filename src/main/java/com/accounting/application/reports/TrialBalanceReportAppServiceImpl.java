@@ -2,7 +2,7 @@ package com.accounting.application.reports;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
 import com.accounting.contract.interfaces.appservices.TrialBalanceReportAppService;
-import com.accounting.contract.interfaces.reports.TrialBalanceReportService;
+import com.accounting.contract.interfaces.reports.TrialBalanceReportRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -12,9 +12,9 @@ import java.util.List;
 public class TrialBalanceReportAppServiceImpl implements TrialBalanceReportAppService {
 
 
-    final TrialBalanceReportService reportRepository;
+    final TrialBalanceReportRepository reportRepository;
 
-    public TrialBalanceReportAppServiceImpl(TrialBalanceReportService reportRepository) {
+    public TrialBalanceReportAppServiceImpl(TrialBalanceReportRepository reportRepository) {
         this.reportRepository = reportRepository;
     }
 

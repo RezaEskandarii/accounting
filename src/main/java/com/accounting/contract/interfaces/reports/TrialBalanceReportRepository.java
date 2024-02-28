@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public interface TrialBalanceReportService {
+public interface TrialBalanceReportRepository {
     List<TrialBalanceReportDto> getReport(Long accountId, Long journalId, LocalDate fromDate, LocalDate toDate);
 }
 

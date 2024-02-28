@@ -1,4 +1,4 @@
-package com.accounting.jparepository;
+package com.accounting.infrustructure.repository.jparepository;
 
 import com.accounting.domain.entitites.User;
 import org.springframework.data.repository.CrudRepository;

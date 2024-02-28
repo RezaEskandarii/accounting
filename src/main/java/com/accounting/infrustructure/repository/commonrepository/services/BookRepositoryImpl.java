@@ -1,9 +1,9 @@
-package com.accounting.domain.repositories.services;
+package com.accounting.infrustructure.repository.commonrepository.services;
 
 import com.accounting.domain.entitites.Book;
-import com.accounting.domain.interfaces.BookRepository;
-import com.accounting.jparepository.BookJpaRepository;
-import com.accounting.jparepository.TransactionJpaRepository;
+import com.accounting.domain.interfaces.repository.BookRepository;
+import com.accounting.infrustructure.repository.jparepository.BookJpaRepository;
+import com.accounting.infrustructure.repository.jparepository.TransactionJpaRepository;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.ConflictException;
 import com.accounting.shared.filters.PaginationInput;

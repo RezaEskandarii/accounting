@@ -1,4 +1,4 @@
-package com.accounting.jparepository;
+package com.accounting.infrustructure.repository.jparepository;
 
 import com.accounting.domain.entitites.Tenant;
 import org.springframework.data.jpa.repository.JpaRepository;

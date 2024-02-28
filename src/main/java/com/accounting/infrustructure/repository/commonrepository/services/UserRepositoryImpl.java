@@ -1,10 +1,10 @@
-package com.accounting.domain.repositories.services;
+package com.accounting.infrustructure.repository.commonrepository.services;
 
 import com.accounting.domain.entitites.Role;
 import com.accounting.domain.entitites.User;
-import com.accounting.domain.interfaces.UserRepository;
-import com.accounting.jparepository.RoleJpaRepository;
-import com.accounting.jparepository.UserJpaRepository;
+import com.accounting.domain.interfaces.repository.UserRepository;
+import com.accounting.infrustructure.repository.jparepository.RoleJpaRepository;
+import com.accounting.infrustructure.repository.jparepository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 import org.webjars.NotFoundException;
 
