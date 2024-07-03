@@ -41,12 +41,16 @@ public class AccountGroupRepositoryImpl implements AccountGroupRepository {
 
     @Override
     public Optional<AccountGroup> findByCode(String code) {
-        return Optional.of(accountGroupRepository.findByCode(code));
+        var account = accountGroupRepository.findByCode(code);
+        return account != null ? Optional.of(account) : Optional.empty();
     }
 
     @Override
     public Optional<AccountGroup> findByIdAndCode(Long id, String code) {
-        return Optional.of(accountGroupRepository.findByIdAndCode(id, code));
+        var result = accountGroupRepository.findByIdAndCode(id, code);
+        if (result == null) return Optional.empty();
+
+        return Optional.of(result);
     }
 
     @Override

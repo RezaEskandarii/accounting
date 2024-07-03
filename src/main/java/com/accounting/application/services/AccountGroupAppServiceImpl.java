@@ -49,7 +49,9 @@ public class AccountGroupAppServiceImpl implements AccountGroupAppService {
     public AccountGroupDto update(long id, AccountGroupDto groupDto) {
         throwIfAccountGroupCodeDuplicated(id, groupDto.getCode());
         var ac = accountGroupMapper.mapToAccountGroup(groupDto);
-        return accountGroupMapper.mapToAccountGroupDto(accountGroupService.update(id, ac));
+
+        var result = accountGroupService.update(id, ac);
+        return accountGroupMapper.mapToAccountGroupDto(result);
     }
 
     @Override

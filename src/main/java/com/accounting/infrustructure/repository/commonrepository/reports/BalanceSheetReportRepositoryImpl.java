@@ -12,8 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Component
-public record BalanceSheetReportRepositoryImpl(AccountJpaRepository accountJpaRepository,
-                                               TransactionJpaRepository transactionJpaRepository) implements BalanceSheetReportRepository {
+public record BalanceSheetReportRepositoryImpl(
+        AccountJpaRepository accountJpaRepository,
+        TransactionJpaRepository transactionJpaRepository
+) implements BalanceSheetReportRepository {
 
     @Override
     public Map<String, BigDecimal> generateBalanceSheet() {

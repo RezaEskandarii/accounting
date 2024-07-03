@@ -63,7 +63,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<Object> handleConflictException(Exception e) {
         if (e instanceof ConflictException || e instanceof DuplicatedItemException) {
-            assert e instanceof DuplicatedItemException;
+
             List<String> errorMessages = ((DuplicatedItemException) e).getErrors() != null ?
                     ((DuplicatedItemException) e).getErrors()
                      : new ArrayList<>();
