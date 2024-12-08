@@ -1,4 +1,4 @@
-package com.accounting.application.services;
+package com.accounting.application.services.AppServices;
 
 import com.accounting.contract.dto.accounts.AccountCreateDto;
 import com.accounting.contract.dto.accounts.AccountDTO;

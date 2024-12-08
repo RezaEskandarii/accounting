@@ -19,7 +19,7 @@ public class AccountGroup extends BaseEntity {
     @Column(unique = true)
     private String code;
 
-    @Column(unique = true, length = 125)
+    @Column(length = 125)
     private String name;
 
     @Column(name = "group_type")

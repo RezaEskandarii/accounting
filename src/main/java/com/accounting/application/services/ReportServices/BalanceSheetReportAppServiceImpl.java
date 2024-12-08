@@ -1,4 +1,4 @@
-package com.accounting.application.reports;
+package com.accounting.application.services.ReportServices;
 
 import com.accounting.contract.interfaces.reports.BalanceSheetReportAppService;
 import com.accounting.domain.interfaces.repository.BalanceSheetReportRepository;

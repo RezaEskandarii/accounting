@@ -1,4 +1,4 @@
-package com.accounting.application.services;
+package com.accounting.application.services.AppServices;
 
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.contract.interfaces.appservices.AccountGroupAppService;
@@ -67,7 +67,7 @@ public class AccountGroupAppServiceImpl implements AccountGroupAppService {
 
     private void throwIfAccountGroupCodeDuplicated(String code) {
         var ac = accountGroupService.findByCode(code);
-        if (ac.isPresent()) {
+        if (ac != null && ac.isPresent()) {
             throw new DuplicatedItemException(duplicatedCodeError(code));
         }
     }

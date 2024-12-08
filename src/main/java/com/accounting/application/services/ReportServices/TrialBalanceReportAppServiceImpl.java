@@ -1,4 +1,4 @@
-package com.accounting.application.reports;
+package com.accounting.application.services.ReportServices;
 
 import com.accounting.contract.dto.TrialBalanceReportDto;
 import com.accounting.contract.interfaces.appservices.TrialBalanceReportAppService;

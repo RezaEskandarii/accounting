@@ -1,4 +1,4 @@
-package com.accounting.application.services;
+package com.accounting.application.services.AppServices;
 
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.contract.interfaces.appservices.JournalAppService;

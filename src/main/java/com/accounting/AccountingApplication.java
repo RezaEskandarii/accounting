@@ -15,7 +15,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AccountingApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(AccountingApplication.class, args);
+        try {
+            SpringApplication.run(AccountingApplication.class, args);
+        } catch (Exception e) {
+            log.debug(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 
