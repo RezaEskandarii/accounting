@@ -4,7 +4,7 @@ import com.accounting.contract.dto.User.UserCreateDto;
 import com.accounting.contract.dto.User.UserDto;
 import com.accounting.contract.dto.User.UserUpdateDto;
 import com.accounting.domain.interfaces.repository.UserRepository;
-import com.accounting.domain.model.User;
+import com.accounting.domain.entitites.User;
 import com.accounting.shared.mapper.UserMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,7 +2,7 @@ package com.accounting.application.services.AppServices;
 
 import com.accounting.contract.dto.accountGroups.AccountGroupDto;
 import com.accounting.domain.interfaces.repository.AccountGroupRepository;
-import com.accounting.domain.model.AccountGroup;
+import com.accounting.domain.entitites.AccountGroup;
 import com.accounting.shared.exceptions.DuplicatedItemException;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.shared.mapper.AccountGroupMapper;

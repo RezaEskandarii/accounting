@@ -3,7 +3,7 @@ package com.accounting.application.services.AppServices;
 import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
 import com.accounting.domain.interfaces.repository.BookRepository;
-import com.accounting.domain.model.Book;
+import com.accounting.domain.entitites.Book;
 import com.accounting.shared.Constants;
 import com.accounting.shared.exceptions.InvalidDataException;
 import com.accounting.shared.exceptions.ItemNotFoundException;

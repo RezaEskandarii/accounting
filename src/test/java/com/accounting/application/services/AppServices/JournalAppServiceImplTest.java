@@ -2,7 +2,7 @@ package com.accounting.application.services.AppServices;
 
 import com.accounting.contract.dto.journal.JournalDto;
 import com.accounting.domain.interfaces.repository.JournalRepository;
-import com.accounting.domain.model.Journal;
+import com.accounting.domain.entitites.Journal;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.shared.mapper.JournalMapper;
 import com.accounting.validator.JournalValidator;
