@@ -5,5 +5,7 @@ CREATE TABLE books
     updated_at TIMESTAMP,
     name       VARCHAR(255) NOT NULL UNIQUE,
     start_date DATE,
-    end_date   DATE
+    end_date   DATE,
+    is_active  boolean,
+    is_closed  bool
 );

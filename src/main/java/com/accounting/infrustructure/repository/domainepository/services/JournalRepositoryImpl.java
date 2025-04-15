@@ -1,4 +1,4 @@
-package com.accounting.infrustructure.repository.commonrepository.services;
+package com.accounting.infrustructure.repository.domainepository.services;
 
 import com.accounting.domain.entitites.Journal;
 import com.accounting.domain.interfaces.repository.JournalRepository;
@@ -8,6 +8,8 @@ import com.accounting.shared.filters.PaginationInput;
 import com.accounting.utils.PageUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class JournalRepositoryImpl implements JournalRepository {
@@ -46,6 +48,11 @@ public class JournalRepositoryImpl implements JournalRepository {
     @Override
     public void delete(Long id) {
         journalRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Journal> findByBookId(Long bookId) {
+        return journalRepository.findByBookId(bookId);
     }
 
     @Override

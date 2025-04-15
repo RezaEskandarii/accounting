@@ -2,14 +2,14 @@ package com.accounting.application.services.AppServices;
 
 import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
-import com.accounting.domain.interfaces.repository.BookRepository;
 import com.accounting.domain.entitites.Book;
+import com.accounting.domain.interfaces.repository.BookRepository;
+import com.accounting.domain.interfaces.repository.JournalRepository;
 import com.accounting.shared.Constants;
 import com.accounting.shared.exceptions.InvalidDataException;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.filters.PaginationInput;
 import com.accounting.shared.mapper.BookMapper;
-import com.accounting.utils.DateUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,9 +23,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class BookAppServiceImplTest {
@@ -38,9 +38,11 @@ class BookAppServiceImplTest {
 
     private BookAppServiceImpl bookAppService;
 
+    private JournalRepository journalRepository;
+
     @BeforeEach
     void setUp() {
-        bookAppService = new BookAppServiceImpl(bookRepository, bookMapper);
+        bookAppService = new BookAppServiceImpl(bookRepository, bookMapper, journalRepository);
     }
 
     @Test
@@ -52,13 +54,13 @@ class BookAppServiceImplTest {
         Date startDate = cal.getTime();
         cal.add(Calendar.MONTH, Constants.bookDateDuration);
         Date endDate = cal.getTime();
-        
+
         createDto.setStartDate(startDate);
         createDto.setEndDate(endDate);
-        
+
         Book book = new Book();
         BookDto expectedDto = new BookDto();
-        
+
         when(bookMapper.mapToBook(any(CreateUpdateBookDto.class))).thenReturn(book);
         when(bookRepository.create(any(Book.class))).thenReturn(book);
         when(bookMapper.mapToBookDto(any(Book.class))).thenReturn(expectedDto);
@@ -81,7 +83,7 @@ class BookAppServiceImplTest {
         Date startDate = cal.getTime();
         cal.add(Calendar.MONTH, Constants.bookDateDuration + 1); // Invalid duration
         Date endDate = cal.getTime();
-        
+
         createDto.setStartDate(startDate);
         createDto.setEndDate(endDate);
 
@@ -100,14 +102,14 @@ class BookAppServiceImplTest {
         Date startDate = cal.getTime();
         cal.add(Calendar.MONTH, Constants.bookDateDuration);
         Date endDate = cal.getTime();
-        
+
         updateDto.setStartDate(startDate);
         updateDto.setEndDate(endDate);
-        
+
         Book existingBook = new Book();
         Book updatedBook = new Book();
         BookDto expectedDto = new BookDto();
-        
+
         when(bookRepository.find(id)).thenReturn(Optional.of(existingBook));
         when(bookMapper.mapToBook(any(CreateUpdateBookDto.class))).thenReturn(updatedBook);
         when(bookRepository.update(eq(id), any(Book.class))).thenReturn(updatedBook);
@@ -140,7 +142,7 @@ class BookAppServiceImplTest {
         Long id = 1L;
         Book book = new Book();
         BookDto expectedDto = new BookDto();
-        
+
         when(bookRepository.find(id)).thenReturn(Optional.of(book));
         when(bookMapper.mapToBookDto(book)).thenReturn(expectedDto);
 
@@ -181,7 +183,7 @@ class BookAppServiceImplTest {
         Book book = new Book();
         BookDto bookDto = new BookDto();
         Page<Book> bookPage = new PageImpl<>(Arrays.asList(book));
-        
+
         when(bookRepository.findAll(input)).thenReturn(bookPage);
         when(bookMapper.mapToBookDto(book)).thenReturn(bookDto);
 

@@ -1,4 +1,4 @@
-package com.accounting.infrustructure.repository.commonrepository.reports;
+package com.accounting.infrustructure.repository.domainepository.reports;
 
 import com.accounting.domain.entitites.Account;
 import com.accounting.domain.entitites.Transaction;

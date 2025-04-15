@@ -1,4 +1,4 @@
-package com.accounting.infrustructure.repository.commonrepository.services;
+package com.accounting.infrustructure.repository.domainepository.services;
 
 import com.accounting.domain.entitites.Book;
 import com.accounting.domain.interfaces.repository.BookRepository;

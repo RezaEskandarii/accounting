@@ -1,6 +1,5 @@
 package com.accounting.domain.entitites;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Setter
 @Getter
-@Data
 @Entity
 @Table(name = "books")
 public class Book extends BaseEntity {
@@ -26,4 +24,10 @@ public class Book extends BaseEntity {
 
     @Column(name = "end_date", unique = false)
     private Date endDate;
+
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    @Column(name = "is_closed")
+    private boolean isClosed;
 }

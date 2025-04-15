@@ -4,6 +4,7 @@ import com.accounting.contract.dto.book.BookDto;
 import com.accounting.contract.dto.book.CreateUpdateBookDto;
 import com.accounting.contract.interfaces.appservices.BookAppService;
 import com.accounting.domain.interfaces.repository.BookRepository;
+import com.accounting.domain.interfaces.repository.JournalRepository;
 import com.accounting.shared.Constants;
 import com.accounting.shared.errors.Errors;
 import com.accounting.shared.exceptions.InvalidDataException;
@@ -20,14 +21,14 @@ import java.util.Date;
 public class BookAppServiceImpl implements BookAppService {
 
 
-    final BookRepository bookService;
-
-
+    final BookRepository bookRepository;
     final BookMapper bookMapper;
+    final JournalRepository journalRepository;
 
-    public BookAppServiceImpl(BookRepository bookService, BookMapper bookMapper) {
-        this.bookService = bookService;
+    public BookAppServiceImpl(BookRepository bookService, BookMapper bookMapper, JournalRepository journalRepository) {
+        this.bookRepository = bookService;
         this.bookMapper = bookMapper;
+        this.journalRepository = journalRepository;
     }
 
     @Override
@@ -35,38 +36,42 @@ public class BookAppServiceImpl implements BookAppService {
 
         validateDateTime(bookDto.getStartDate(), bookDto.getEndDate());
 
-        var entity = bookMapper.mapToBook(bookDto);
-        var result = bookService.create(entity);
+        var book = bookMapper.mapToBook(bookDto);
+        book.setActive(true);
+
+        var result = bookRepository.create(book);
+
         return bookMapper.mapToBookDto(result);
     }
 
     @Override
     public BookDto update(Long id, CreateUpdateBookDto bookDto) {
 
-        bookService.find(id).orElseThrow(() -> new ItemNotFoundException(1));
+        bookRepository.find(id).orElseThrow(() -> new ItemNotFoundException(1));
 
         validateDateTime(bookDto.getStartDate(), bookDto.getEndDate());
 
         var entity = bookMapper.mapToBook(bookDto);
-        var result = bookService.update(id, entity);
+        var result = bookRepository.update(id, entity);
+
         return bookMapper.mapToBookDto(result);
     }
 
     @Override
     public BookDto find(Long id) {
-        var result = bookService.find(id);
+        var result = bookRepository.find(id);
         return result.map(book -> bookMapper.mapToBookDto(book)).orElseThrow(() -> new ItemNotFoundException(1));
     }
 
     @Override
     public void delete(Long id) {
-        bookService.delete(id);
+        bookRepository.delete(id);
     }
 
     @Override
     public Page<BookDto> findAll(PaginationInput input) {
 
-        var books = bookService.findAll(input);
+        var books = bookRepository.findAll(input);
         return books.map(b -> bookMapper.mapToBookDto(b));
     }
 
@@ -82,4 +87,5 @@ public class BookAppServiceImpl implements BookAppService {
             throw new InvalidDataException().addError(Errors.BOOK_DATE_DURATION_ERROR);
         }
     }
+
 }
