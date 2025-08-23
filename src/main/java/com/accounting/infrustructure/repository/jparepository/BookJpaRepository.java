@@ -9,4 +9,5 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface BookJpaRepository extends JpaRepository<Book, Long> {
+    public Book findByName(String name);
 }

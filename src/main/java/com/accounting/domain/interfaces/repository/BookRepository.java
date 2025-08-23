@@ -17,4 +17,7 @@ public interface BookRepository {
     void delete(Long id);
 
     Page<Book> findAll(PaginationInput input);
+
+    Book findByName(String name);
+
 }

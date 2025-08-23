@@ -57,4 +57,9 @@ public class BookRepositoryImpl implements BookRepository {
 
         return bookRepository.findAll(PageUtils.GetRequest(input));
     }
+
+    @Override
+    public Book findByName(String name) {
+        return bookRepository.findByName(name);
+    }
 }

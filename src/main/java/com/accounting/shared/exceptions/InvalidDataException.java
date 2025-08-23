@@ -3,7 +3,7 @@ package com.accounting.shared.exceptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvalidDataException extends RuntimeException {
+public class InvalidDataException extends ApplicationException {
 
     public List<String> getErrors() {
         return errors;

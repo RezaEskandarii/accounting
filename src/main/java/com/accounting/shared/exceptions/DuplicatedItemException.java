@@ -2,7 +2,7 @@ package com.accounting.shared.exceptions;
 
 import java.util.List;
 
-public class DuplicatedItemException extends RuntimeException {
+public class DuplicatedItemException extends ApplicationException {
     public List<String> getErrors() {
         return errors;
     }

@@ -2,7 +2,7 @@ package com.accounting.shared.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-public class ApiRequestException extends RuntimeException{
+public class ApiRequestException extends ApplicationException{
     public ApiRequestException(String message) {
         super(message);
     }

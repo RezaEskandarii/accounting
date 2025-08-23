@@ -7,6 +7,7 @@ import com.accounting.domain.interfaces.repository.BookRepository;
 import com.accounting.domain.interfaces.repository.JournalRepository;
 import com.accounting.shared.Constants;
 import com.accounting.shared.errors.Errors;
+import com.accounting.shared.exceptions.DuplicatedItemException;
 import com.accounting.shared.exceptions.InvalidDataException;
 import com.accounting.shared.exceptions.ItemNotFoundException;
 import com.accounting.shared.filters.PaginationInput;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class BookAppServiceImpl implements BookAppService {
@@ -34,6 +36,8 @@ public class BookAppServiceImpl implements BookAppService {
     @Override
     public BookDto create(CreateUpdateBookDto bookDto) {
 
+        throwIfBookExists(bookDto.getName());
+
         validateDateTime(bookDto.getStartDate(), bookDto.getEndDate());
 
         var book = bookMapper.mapToBook(bookDto);
@@ -43,6 +47,7 @@ public class BookAppServiceImpl implements BookAppService {
 
         return bookMapper.mapToBookDto(result);
     }
+
 
     @Override
     public BookDto update(Long id, CreateUpdateBookDto bookDto) {
@@ -88,4 +93,10 @@ public class BookAppServiceImpl implements BookAppService {
         }
     }
 
+    private void throwIfBookExists(String name) {
+        var book = bookRepository.findByName(name);
+
+        if (book != null)
+            throw new DuplicatedItemException(List.of(String.format("book %s already exists", book.getName())));
+    }
 }
